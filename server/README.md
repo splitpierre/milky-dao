@@ -79,7 +79,3 @@ In the `server` subdirectory, run:
 ```console
 npm run compose:up
 ```
-
-## Learn more
-
-You can learn more in the [Amplication documentation](https://docs.amplication.com/guides/getting-started).

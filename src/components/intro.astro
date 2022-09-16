@@ -1,0 +1,39 @@
+---
+import { Icon } from "astro-icon";
+import ContentSection from "~/components/content-section.astro";
+import { getImage } from "@astrojs/image";
+import { Image } from "astro/components";
+import logoPic from "../assets/icon-milky-dao.svg";
+const logo_icon = await getImage({
+  src: "../assets/icon-milky-dao.svg",
+  width: 150,
+  height: 150,
+});
+---
+
+<ContentSection title="Governance" id="intro">
+  <picture slot="eyebrow">
+    <!-- <img src={logo_icon.src} alt="Milky Dao" class="h-32" /> -->
+    <img src={logoPic} alt="Milky Dao" class="h-32" />
+  </picture>
+  <Fragment slot="lead">
+    Milky DAO is a platform for creating and interacting with
+    <span class="text-primary">Cardano / Milkomeda</span> DAOs.
+  </Fragment>
+  <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+    <a
+      href="https://balaio-studios.stoplight.io/docs/milky-dao"
+      class="flex items-center justify-center gap-3 px-6 py-4 border-2 border-current"
+    >
+      <Icon pack="mdi" name="telescope" class="h-8" />
+      <span>Read the docs</span>
+    </a>
+    <a
+      href="/projects"
+      class="flex items-center justify-center gap-3 px-6 py-4 border-2 border-current"
+    >
+      <Icon pack="mdi" name="rocket" class="h-8" />
+      <span>Try it out</span>
+    </a>
+  </div>
+</ContentSection>

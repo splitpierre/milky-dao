@@ -1,0 +1,70 @@
+---
+import Starfield from "~/components/starfield.astro";
+import { getImage } from "@astrojs/image";
+const { src } = await getImage({
+  src: "../assets/logo-milky-dao-dark.png",
+  width: 605,
+  height: 168,
+});
+---
+
+<section class="relative h-full" style="background-color:#0E1926">
+  <Starfield />
+  <div class="relative grid h-full sm:grid-cols-2 place-items-center">
+    <h2
+      class="flex flex-col self-end gap-2 sm:gap-4 sm:self-auto sm:justify-self-end"
+    >
+      <div
+        class="font-extralight tracking-tighter text-center text-5xl gradient-text"
+      >
+        Analyze and vote on
+        <br /> Cardano/Milkomeda,
+        <br /> DAO proposals.
+      </div>
+    </h2>
+    <picture
+      class="self-start w-2/3 max-w-3xl sm:w-10/12 sm:self-auto sm:justify-self-start"
+    >
+      <div class="p-32"><img src={src} alt="Milky DAO" /></div>
+    </picture>
+  </div>
+</section>
+
+<!-- https://github.com/withastro/compiler/issues/395 -->
+<!-- <noscript>
+  <style>
+    #splash-bg-fallback {
+      @apply block;
+    }
+  </style>
+</noscript> -->
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 30px, 0);
+    }
+  }
+
+  picture {
+    animation: float linear 2.5s infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    picture {
+      @apply animate-none;
+    }
+
+    :global(#starfield) {
+      @apply hidden;
+    }
+
+    #splash-bg-fallback {
+      @apply block;
+    }
+  }
+</style>

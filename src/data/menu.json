@@ -1,0 +1,6 @@
+[
+  { "title": "Home", "url": "/" },
+  { "title": "Projects", "url": "/projects" },
+  { "title": "Fetch Sample", "url": "/about" },
+  { "title": "Markup Sample", "url": "/test" }
+]

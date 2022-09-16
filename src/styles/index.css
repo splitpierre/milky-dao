@@ -1,0 +1,43 @@
+@import "global.css";
+@import "theme.css";
+
+#logo {
+  width: 160px;
+  height: 44px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+html[data-theme="light"] #logo {
+  background-image: url("../assets/logo-milky-dao-dark.png");
+}
+
+html[data-theme="dark"] #logo {
+  background-image: url("../assets/logo-milky-dao-dark.png");
+}
+
+html[data-theme="light"] .fixed-header #logo {
+  background-image: url("../assets/logo-milky-dao-light.png");
+}
+
+.parsedown h1 {
+  @apply mt-8 text-3xl;
+}
+.parsedown h2 {
+  @apply mt-8 text-2xl;
+}
+.parsedown h3 {
+  @apply mt-8 text-xl;
+}
+.parsedown p,
+td {
+  @apply mb-4 text-sm;
+}
+.parsedown ul {
+  @apply ml-8 list-disc text-sm;
+}
+.parsedown table {
+  @apply table-auto w-full text-sm;
+}
+.parsedown tr {
+  @apply border-y;
+}

@@ -1,0 +1,28 @@
+---
+import ContentSection from "~/components/content-section.astro";
+// import ShowcaseCard from "~/components/showcase-card.astro";
+import sites from "~/data/showcase/sites.json";
+---
+
+<ContentSection title="Projects" id="showcase">
+  <div slot="lead">filter</div>
+  <div class="max-w-6xl space-y-2">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {
+        sites.map(({ title, image, url }) => (
+          <div>
+            {title} 
+            <img src={image} alt="{title}" />
+            </div>
+        ))
+      }
+    </div>
+    <p class="text-sm text-right">
+      <button
+        class="bg-primary hover:bg-orange-600 text-white font-bold py-2 px-4"
+      >
+        Load more
+      </button>
+    </p>
+  </div>
+</ContentSection>

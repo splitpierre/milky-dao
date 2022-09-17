@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5aef3a14-9325-4bb1-8048-063a0eaf3acb/deploy-status)](https://app.netlify.com/sites/milky-dao/deploys)
+
 # Milky DAO 🌌
 
 Experimental project for the Milkomeda DAO Hackathon.

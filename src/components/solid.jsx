@@ -4,7 +4,7 @@ import { createSignal, createResource } from "solid-js";
 const fetchUser = async (id) =>
   (await fetch(`https://swapi.dev/api/people/${id}/`)).json();
 const fetchTest = async () =>
-  (await fetch("http://209.50.55.75:3000/api/users", {
+  (await fetch("https://milkydao.lilgoats.io/api/users", {
     headers:{
 
       Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjYzNDI1NTk4LCJleHAiOjE2NjM1OTgzOTh9.yhp2a8aaa2OGzeX1Dne6bI4P3_utIc3Z115RW8YFE10"

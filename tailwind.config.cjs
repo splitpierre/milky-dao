@@ -8,6 +8,7 @@ module.exports = {
         syne: ["Syne", ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        milkyPurple: "#0C0324",
         primary: "var(--color-primary)",
         secondary: "var(--color-secondary)",
       },

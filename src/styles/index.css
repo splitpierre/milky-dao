@@ -14,6 +14,9 @@ html[data-theme="light"] #logo {
 html[data-theme="dark"] #logo {
   background-image: url("../assets/logo-milky-dao-dark.png");
 }
+html[data-theme="dark"] div {
+  background-image: url("../assets/stars.png");
+}
 
 html[data-theme="light"] .fixed-header #logo {
   background-image: url("../assets/logo-milky-dao-light.png");

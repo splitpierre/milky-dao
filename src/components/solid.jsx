@@ -4,7 +4,7 @@ import { createSignal, createResource } from "solid-js";
 const fetchUser = async (id) =>
   (await fetch(`https://swapi.dev/api/people/${id}/`)).json();
 const fetchTest = async () =>
-  (await fetch("http://localhost:3000/api/users", {
+  (await fetch("http://209.50.55.75:3000/api/users", {
     headers:{
 
       Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjYzMzI5MTExLCJleHAiOjE2NjM1MDE5MTF9.S8Jzm8lefM973qJXpQ4t7j_FhW1hA0m6IM9n8qabZhU"

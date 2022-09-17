@@ -41,3 +41,6 @@ td {
 .parsedown tr {
   @apply border-y;
 }
+.btn {
+  background: linear-gradient(90deg, #4E10FF 50%, #AB17DF 100%);
+}

@@ -7,7 +7,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://milky-dao.netlify.app/",
+  site: "https://milky-dao.vercel.app/",
   integrations: [tailwind(), solid(), image(), mdx()],
   vite: {
     ssr: {

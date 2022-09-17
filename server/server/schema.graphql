@@ -5,7 +5,12 @@
 type Category {
   createdAt: DateTime!
   id: String!
-  project(orderBy: [ProjectOrderByInput!], skip: Float, take: Float, where: ProjectWhereInput): [Project!]!
+  project(
+    orderBy: [ProjectOrderByInput!]
+    skip: Float
+    take: Float
+    where: ProjectWhereInput
+  ): [Project!]!
   slug: String
   title: String!
   updatedAt: DateTime!
@@ -88,20 +93,39 @@ type Mutation {
   deleteProposal(where: ProposalWhereUniqueInput!): Proposal!
   deleteUser(where: UserWhereUniqueInput!): User!
   login(credentials: Credentials!): UserInfo!
-  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category!
-  updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project!
-  updateProposal(data: ProposalUpdateInput!, where: ProposalWhereUniqueInput!): Proposal!
+  updateCategory(
+    data: CategoryUpdateInput!
+    where: CategoryWhereUniqueInput!
+  ): Category!
+  updateProject(
+    data: ProjectUpdateInput!
+    where: ProjectWhereUniqueInput!
+  ): Project!
+  updateProposal(
+    data: ProposalUpdateInput!
+    where: ProposalWhereUniqueInput!
+  ): Proposal!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
 }
 
 type Project {
-  categories(orderBy: [CategoryOrderByInput!], skip: Float, take: Float, where: CategoryWhereInput): [Category!]!
+  categories(
+    orderBy: [CategoryOrderByInput!]
+    skip: Float
+    take: Float
+    where: CategoryWhereInput
+  ): [Category!]!
   createdAt: DateTime!
   id: String!
   projectDescription: String
   projectIcon: String!
   projectName: String!
-  proposals(orderBy: [ProposalOrderByInput!], skip: Float, take: Float, where: ProposalWhereInput): [Proposal!]!
+  proposals(
+    orderBy: [ProposalOrderByInput!]
+    skip: Float
+    take: Float
+    where: ProposalWhereInput
+  ): [Proposal!]!
   updatedAt: DateTime!
 }
 
@@ -242,19 +266,59 @@ input ProposalWhereUniqueInput {
 }
 
 type Query {
-  _categoriesMeta(orderBy: [CategoryOrderByInput!], skip: Float, take: Float, where: CategoryWhereInput): MetaQueryPayload!
-  _projectsMeta(orderBy: [ProjectOrderByInput!], skip: Float, take: Float, where: ProjectWhereInput): MetaQueryPayload!
-  _proposalsMeta(orderBy: [ProposalOrderByInput!], skip: Float, take: Float, where: ProposalWhereInput): MetaQueryPayload!
-  _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
-  categories(orderBy: [CategoryOrderByInput!], skip: Float, take: Float, where: CategoryWhereInput): [Category!]!
+  _categoriesMeta(
+    orderBy: [CategoryOrderByInput!]
+    skip: Float
+    take: Float
+    where: CategoryWhereInput
+  ): MetaQueryPayload!
+  _projectsMeta(
+    orderBy: [ProjectOrderByInput!]
+    skip: Float
+    take: Float
+    where: ProjectWhereInput
+  ): MetaQueryPayload!
+  _proposalsMeta(
+    orderBy: [ProposalOrderByInput!]
+    skip: Float
+    take: Float
+    where: ProposalWhereInput
+  ): MetaQueryPayload!
+  _usersMeta(
+    orderBy: [UserOrderByInput!]
+    skip: Float
+    take: Float
+    where: UserWhereInput
+  ): MetaQueryPayload!
+  categories(
+    orderBy: [CategoryOrderByInput!]
+    skip: Float
+    take: Float
+    where: CategoryWhereInput
+  ): [Category!]!
   category(where: CategoryWhereUniqueInput!): Category
   project(where: ProjectWhereUniqueInput!): Project
-  projects(orderBy: [ProjectOrderByInput!], skip: Float, take: Float, where: ProjectWhereInput): [Project!]!
+  projects(
+    orderBy: [ProjectOrderByInput!]
+    skip: Float
+    take: Float
+    where: ProjectWhereInput
+  ): [Project!]!
   proposal(where: ProposalWhereUniqueInput!): Proposal
-  proposals(orderBy: [ProposalOrderByInput!], skip: Float, take: Float, where: ProposalWhereInput): [Proposal!]!
+  proposals(
+    orderBy: [ProposalOrderByInput!]
+    skip: Float
+    take: Float
+    where: ProposalWhereInput
+  ): [Proposal!]!
   user(where: UserWhereUniqueInput!): User
   userInfo: UserInfo!
-  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+  users(
+    orderBy: [UserOrderByInput!]
+    skip: Float
+    take: Float
+    where: UserWhereInput
+  ): [User!]!
 }
 
 enum QueryMode {
@@ -303,7 +367,12 @@ type User {
   firstName: String
   id: String!
   lastName: String
-  proposals(orderBy: [ProposalOrderByInput!], skip: Float, take: Float, where: ProposalWhereInput): [Proposal!]!
+  proposals(
+    orderBy: [ProposalOrderByInput!]
+    skip: Float
+    take: Float
+    where: ProposalWhereInput
+  ): [Proposal!]!
   roles: [String!]!
   updatedAt: DateTime!
   username: String!

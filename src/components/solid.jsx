@@ -7,7 +7,7 @@ const fetchTest = async () =>
   (await fetch("http://209.50.55.75:3000/api/users", {
     headers:{
 
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjYzMzI5MTExLCJleHAiOjE2NjM1MDE5MTF9.S8Jzm8lefM973qJXpQ4t7j_FhW1hA0m6IM9n8qabZhU"
+      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjYzNDI1NTk4LCJleHAiOjE2NjM1OTgzOTh9.yhp2a8aaa2OGzeX1Dne6bI4P3_utIc3Z115RW8YFE10"
     }
   })).json();
 

@@ -1,6 +1,6 @@
 [
   { "title": "Home", "url": "/" },
   { "title": "Projects", "url": "/projects" },
-  { "title": "Fetch Sample", "url": "/about" },
-  { "title": "Markup Sample", "url": "/test" }
+  { "title": "Fetch Sample", "url": "/fetch" },
+  { "title": "Markup Sample", "url": "/about" }
 ]

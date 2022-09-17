@@ -2,5 +2,5 @@
   { "title": "Home", "url": "/" },
   { "title": "Projects", "url": "/projects" },
   { "title": "Fetch Sample", "url": "/fetch" },
-  { "title": "Markup Sample", "url": "/about" }
+  { "title": "About", "url": "/about" }
 ]

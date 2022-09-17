@@ -14,16 +14,20 @@ html[data-theme="light"] #logo {
 html[data-theme="dark"] #logo {
   background-image: url("../assets/logo-milky-dao-dark.png");
 }
-html[data-theme="dark"] div {
+html[data-theme="dark"] #home-content,
+html[data-theme="dark"] #footer {
   background-image: url("../assets/stars.png");
 }
 
 html[data-theme="light"] .fixed-header #logo {
   background-image: url("../assets/logo-milky-dao-light.png");
 }
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: Syne;
-  @apply uppercase
+  @apply uppercase;
 }
 .parsedown h1 {
   @apply mt-8 text-3xl;
@@ -48,5 +52,5 @@ td {
   @apply border-y;
 }
 .btn {
-  background: linear-gradient(90deg, #4E10FF 50%, #AB17DF 100%);
+  background: linear-gradient(90deg, #4e10ff 50%, #ab17df 100%);
 }

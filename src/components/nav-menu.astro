@@ -1,0 +1,19 @@
+---
+import menu from "~/data/menu.json";
+
+---
+
+
+<nav>
+    <ul class="flex flex-col">
+      {
+        menu.map(({ title, url }) => (
+          <li>
+            <a class="block py-4 text-xl text-center" href={url}>
+              {title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>

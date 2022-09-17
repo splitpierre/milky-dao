@@ -18,7 +18,10 @@ html[data-theme="dark"] #logo {
 html[data-theme="light"] .fixed-header #logo {
   background-image: url("../assets/logo-milky-dao-light.png");
 }
-
+h1, h2, h3, h4 {
+  font-family: Syne;
+  @apply uppercase
+}
 .parsedown h1 {
   @apply mt-8 text-3xl;
 }

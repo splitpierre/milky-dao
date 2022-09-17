@@ -3,7 +3,7 @@ import { Icon } from "astro-icon";
 import ThemeSwitcher from "~/components/theme-switcher.astro";
 import menu from "~/data/menu.json";
 import logoPic from "../assets/icon-milky-dao.svg";
-
+import NavMenu from "~/components/nav-menu.astro"
 ---
 
 <header
@@ -62,19 +62,7 @@ import logoPic from "../assets/icon-milky-dao.svg";
           <div class="flex justify-center">
             <img src={logoPic} alt="Milky Dao" class="h-32" />
           </div>
-          <nav>
-            <ul class="flex flex-col">
-              {
-                menu.map(({ title, url }) => (
-                  <li>
-                    <a class="block py-4 text-xl text-center" href={url}>
-                      {title}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </nav>
+          <NavMenu/>
         </div>
       </div>
     </div>

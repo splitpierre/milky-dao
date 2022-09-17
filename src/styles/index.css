@@ -12,7 +12,7 @@ html[data-theme="light"] #logo {
 }
 
 html[data-theme="dark"] #logo {
-  background-image: url("../assets/logo-milky-dao-dark.png");
+  background-image: url("../assets/new-logo.png");
 }
 html[data-theme="dark"] #home-content,
 html[data-theme="dark"] #footer {
@@ -53,4 +53,14 @@ td {
 }
 .btn {
   background: linear-gradient(90deg, #4e10ff 50%, #ab17df 100%);
+}
+
+#body-gradient {
+  background: url(../assets/bg-gradient-hero-home.png);
+  background-size: cover;
+  opacity: .3;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
 }

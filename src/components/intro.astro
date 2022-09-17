@@ -1,13 +1,7 @@
 ---
 import { Icon } from "astro-icon";
 import ContentSection from "~/components/content-section.astro";
-import { getImage } from "@astrojs/image";
 import logoPic from "../assets/icon-milky-dao.svg";
-const logo_icon = await getImage({
-  src: "../assets/icon-milky-dao.svg",
-  width: 150,
-  height: 150,
-});
 ---
 
 <ContentSection title="Governance" id="intro">

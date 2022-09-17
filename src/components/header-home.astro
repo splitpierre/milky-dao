@@ -1,13 +1,9 @@
 ---
 import { Icon } from "astro-icon";
 import ThemeSwitcher from "~/components/theme-switcher.astro";
-import { getImage } from "@astrojs/image";
 import menu from "~/data/menu.json";
-const logo_icon = await getImage({
-  src: "../assets/icon-milky-dao.svg",
-  width: 150,
-  height: 150,
-});
+import logoPic from "../assets/icon-milky-dao.svg";
+
 ---
 
 <header
@@ -66,7 +62,7 @@ const logo_icon = await getImage({
             </button>
           </header>
           <div class="flex justify-center">
-            <img src={logo_icon.src} alt="Milky Dao" class="h-32" />
+            <img src={logoPic} alt="Milky Dao" class="h-32" />
           </div>
           <nav>
             <ul class="flex flex-col">

@@ -1,6 +1,18 @@
 [
-  { "title": "Home", "url": "/" },
-  { "title": "Projects", "url": "/projects" },
-  { "title": "Fetch Sample", "url": "/fetch" },
-  { "title": "About", "url": "/about" }
+  {
+    "title": "Home",
+    "url": "/"
+  },
+  {
+    "title": "Dashboard",
+    "url": "/dashboard"
+  },
+  {
+    "title": "Projects",
+    "url": "/projects"
+  },
+  {
+    "title": "About",
+    "url": "/about"
+  }
 ]

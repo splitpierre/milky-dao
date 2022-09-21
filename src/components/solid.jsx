@@ -1,36 +1,35 @@
-import { createSignal, createResource } from "solid-js";
-// import { render } from "solid-js/web";
+// import { createSignal, createResource } from "solid-js";
+import { useStore } from "nanostores-persistent-solid";
+import {
+  persistedAddr,
+  sampleResponse,
+  voterAddr,
+} from "../stores/walletStore";
 
-const fetchUser = async (id) =>
-  (await fetch(`https://swapi.dev/api/people/${id}/`)).json();
-const fetchTest = async () =>
-  (await fetch("https://milkydao.lilgoats.io/api/users", {
-    headers:{
-
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjYzNDI1NTk4LCJleHAiOjE2NjM1OTgzOTh9.yhp2a8aaa2OGzeX1Dne6bI4P3_utIc3Z115RW8YFE10"
-    }
-  })).json();
-
-const SolidAPI = () => {
-  const [userId, setUserId] = createSignal();
-  const [user] = createResource(userId, fetchTest);
-
+export default function SolidAPI() {
+  const sample = useStore(sampleResponse);
+  const voter = useStore(voterAddr);
+  const persisted_addr = useStore(persistedAddr);
+  const staticValue = voterAddr.get();
   return (
     <>
       <input
+        value={staticValue.value}
         style="color:black"
         type="text"
         min="1"
         placeholder="Type something"
-        onInput={(e) => setUserId(e.currentTarget.value)}
+        // onInput={(e) => setUserId(e.currentTarget.value)}
       />
-      <span>{user.loading && "Loading..."}</span>
+      {/* <span>{user.loading && "Loading..."}</span> */}
       <div>
-        <pre>{JSON.stringify(user(), null, 2)}</pre>
+        <span>addr: {voter().value}</span>
+        <br />
+        <span>persisted addr: {persisted_addr()}</span>
+      </div>
+      <div>
+        <pre>{JSON.stringify(sample(), null, 2)}</pre>
       </div>
     </>
   );
-};
-
-// render(SolidAPI, document.getElementById("app"));
-export default SolidAPI;
+}

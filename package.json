@@ -29,8 +29,11 @@
   "dependencies": {
     "@dcspark/milkomeda-js-sdk": "^0.5.3",
     "@nanostores/solid": "^0.3.0",
+    "@nestjs/typeorm": "^9.0.1",
     "micromodal": "^0.4.10",
     "nanostores": "^0.7.0",
-    "nanostores-persistent-solid": "^0.1.7"
+    "nanostores-persistent-solid": "^0.1.7",
+    "sqlite3": "^5.1.1",
+    "typeorm": "^0.3.10"
   }
 }

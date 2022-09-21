@@ -14,5 +14,9 @@
   {
     "title": "About",
     "url": "/about"
+  },
+  {
+    "title": "Fetch",
+    "url": "/fetch"
   }
 ]

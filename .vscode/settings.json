@@ -1,11 +1,11 @@
 {
-  "cSpell.words": [
-    "astro",
-    "Fastify",
-    "Hackathon",
-    "nanostores"
-  ],
+  "cSpell.words": ["astro", "Fastify", "Hackathon", "nanostores"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnType": false,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  }
 }

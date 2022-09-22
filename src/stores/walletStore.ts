@@ -16,6 +16,7 @@ export const fetchSample = action(
   sampleResponse,
   "fetchSample",
   async (store) => {
+    console.log("test api path", SYSTEM_CONFIG.api_path);
     store.set({
       value: await (await fetch(`${SYSTEM_CONFIG.api_path}voters`)).json(),
     });

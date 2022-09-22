@@ -12,9 +12,13 @@ export default function ProjectList() {
       {projects() && projects().value && (
         <>
           {projects().value.map(({ title, iconImage, shortDescription }) => (
-            <div>
+            <div class="relative flex-auto items-center justify-center">
               {title}
-              <img src={iconImage} alt="{title}" />
+              <img
+                class=" w-48 h-48 rounded-full flex items-center m-auto"
+                src={iconImage}
+                alt="{title}"
+              />
               {shortDescription}
             </div>
           ))}

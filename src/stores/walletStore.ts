@@ -1,6 +1,5 @@
 import { atom, map, action } from "nanostores";
 import { persistentAtom } from "nanostores-persistent-solid";
-import { SYSTEM_CONFIG } from "~/config";
 
 export const voterAddr = atom({ value: "init" });
 export const bearStore = atom({ value: 0 });
@@ -16,12 +15,10 @@ export const fetchSample = action(
   sampleResponse,
   "fetchSample",
   async (store) => {
-    console.log("test api path", {
-      conf: SYSTEM_CONFIG.api_path,
-      proc: process.env,
-    });
     store.set({
-      value: await (await fetch(`${SYSTEM_CONFIG.api_path}voters`)).json(),
+      value: await (
+        await fetch(`https://milky-dao-api.herokuapp.com/voters`)
+      ).json(),
     });
   }
 );

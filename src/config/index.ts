@@ -1,4 +1,4 @@
-const ENVIRONMENT = import.meta.env.ENVIRONMENT;
+const ENVIRONMENT = import.meta.env.PUBLIC_ENVIRONMENT;
 export const SYSTEM_CONFIG = {
   environment: ENVIRONMENT,
   site_url:

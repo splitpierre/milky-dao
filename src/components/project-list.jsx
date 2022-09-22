@@ -9,13 +9,17 @@ export default function ProjectList() {
   return (
     <>
       {/* {JSON.stringify(projects())} */}
-      {projects().value.map(({ title, iconImage, shortDescription }) => (
-        <div>
-          {title}
-          <img src={iconImage} alt="{title}" />
-          {shortDescription}
-        </div>
-      ))}
+      {projects() && projects().value && (
+        <>
+          {projects().value.map(({ title, iconImage, shortDescription }) => (
+            <div>
+              {title}
+              <img src={iconImage} alt="{title}" />
+              {shortDescription}
+            </div>
+          ))}
+        </>
+      )}
     </>
   );
 }

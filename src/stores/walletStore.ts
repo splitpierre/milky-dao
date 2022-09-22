@@ -1,7 +1,7 @@
 import { atom, map, action } from "nanostores";
 import { persistentAtom } from "nanostores-persistent-solid";
 
-const STORE_ENV: any = "local";
+const STORE_ENV: any = "production";
 const config = {
   api_url:
     STORE_ENV === "production"

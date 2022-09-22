@@ -14,27 +14,27 @@ export class VotersService {
     return this.prisma.voter.findMany();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.voter.findUnique({
       where: {
-        id: Number(id),
+        id: String(id),
       },
     });
   }
 
-  update(id: number, data: Voter) {
+  update(id: string, data: Voter) {
     return this.prisma.voter.update({
       where: {
-        id: Number(id),
+        id: String(id),
       },
       data: data,
     });
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.prisma.voter.delete({
       where: {
-        id: Number(id),
+        id: String(id),
       },
     });
   }

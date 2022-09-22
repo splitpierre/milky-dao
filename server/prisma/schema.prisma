@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Voter {
-  id  Int   @id @default(autoincrement())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
   name  String
   address String
   something String @default("")

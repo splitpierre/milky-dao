@@ -1,3 +1,12 @@
+const ENVIRONMENT = import.meta.env.ENVIRONMENT;
 export const SYSTEM_CONFIG = {
-  site_url: "https://milky-dao.netlify.app/",
+  environment: ENVIRONMENT,
+  site_url:
+    ENVIRONMENT === "production"
+      ? "https://milky-dao.vercel.app/"
+      : "http://localhost:3000/",
+  api_path:
+    ENVIRONMENT === "production"
+      ? "https://milky-dao-api.herokuapp.com/"
+      : "http://localhost:3005/",
 };

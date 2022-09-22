@@ -5,6 +5,7 @@ import Intro from "~/components/intro.astro";
 import Splash from "~/components/splash.astro";
 import Head from "~/components/head.astro";
 import "~/styles/index.css";
+import { SYSTEM_CONFIG } from "~/config";
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
@@ -16,6 +17,7 @@ import "~/styles/index.css";
     <Header />
     <Splash />
     <div class="px-8 py-32 space-y-24" id="home-content">
+      hi {SYSTEM_CONFIG.api_path} -
       <Intro />
       <!-- <Features />
       <Compatibility />

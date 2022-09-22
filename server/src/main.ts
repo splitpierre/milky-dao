@@ -8,14 +8,11 @@ async function bootstrap() {
     'https://milky-dao.vercel.app',
     'https://milky-dao.netlify.app/',
   ];
-  if (process.env.ENVIRONMENT === 'local') {
-    whitelist.push('http://localhost:3000');
-    whitelist.push('http://localhost:3001');
-    whitelist.push('http://localhost:3005');
-  }
-
-  const app = await NestFactory.create(AppModule, {
-    cors: {
+  let corsObj: any = false;
+  if (process.env.PUBLIC_ENVIRONMENT === 'local') {
+    corsObj = true;
+  } else {
+    corsObj = {
       origin: function (origin: any, callback: any) {
         // allow requests with no origin
         // (like mobile apps or curl requests)
@@ -29,7 +26,11 @@ async function bootstrap() {
         }
         return callback(null, true);
       },
-    },
+    };
+  }
+
+  const app = await NestFactory.create(AppModule, {
+    cors: corsObj,
   });
   // app.enableCors();
   // app.enableCors();

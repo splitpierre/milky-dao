@@ -4,6 +4,8 @@ import Header from "~/components/header.astro";
 import Head from "~/components/head.astro";
 import "~/styles/index.css";
 import Projects from "~/components/projects.astro";
+import ProjectList from "~/components/project-list";
+import ContentSection from "~/components/content-section.astro";
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
@@ -13,7 +15,22 @@ import Projects from "~/components/projects.astro";
   >
     <Header />
     <div class="px-8 py-32 space-y-24">
-      <Projects />
+      <!-- <Projects /> -->
+      <ContentSection title="Projects" id="showcase">
+        <div slot="lead">filter</div>
+        <div class="max-w-6xl space-y-2">
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <ProjectList client:load />
+          </div>
+          <p class="text-sm text-right">
+            <button
+              class="bg-primary hover:bg-orange-600 text-white font-bold py-2 px-4"
+            >
+              Load more
+            </button>
+          </p>
+        </div>
+      </ContentSection>
     </div>
     <Footer />
   </body>

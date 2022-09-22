@@ -32,7 +32,7 @@ model User {
 
 model UserRole {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
+  name String @unique
   users RolesOnUser[]
 }
 
@@ -47,6 +47,8 @@ model RolesOnUser {
 model Proposal {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime?  @default(now())
+  startAt DateTime? @default(now())
+  endAt DateTime?
   title String
   description String
   status EnumProposalStatus?
@@ -65,16 +67,19 @@ model Project {
     id String @id @default(auto()) @map("_id") @db.ObjectId
     createdAt DateTime?  @default(now())
     title String
-    description String
+    slug String @unique
+    iconImage String?
+    shortDescription String?
+    fullDescription String?
     categories CategoriesOnProject[]
-    user User @relation(fields: [userId], references: [id])
+    user User @relation(fields: [userId], references: [id]) 
     userId String
 }
 
 model CategoriesOnProject {
-  category Category @relation(fields: [categoryId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   categoryId String
-  project Project @relation(fields: [projectId], references: [id])
+  project Project @relation(fields: [projectId], references: [id], onDelete: NoAction, onUpdate: Cascade)
   projectId String
   assignedAt DateTime @default(now())
   id String @id @default(auto()) @map("_id") @db.ObjectId

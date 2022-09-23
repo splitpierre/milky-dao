@@ -3,7 +3,7 @@
 
 #logo {
   width: 210px;
-  height: 44px;
+  height: 55px;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -71,4 +71,10 @@ header,
 #home-content {
   z-index: 1;
   position: relative;
+}
+
+.wrapper {
+  display: grid;
+  height: 100vh;
+  place-items: center;
 }

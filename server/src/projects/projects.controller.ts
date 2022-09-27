@@ -29,6 +29,11 @@ export class ProjectsController {
     return this.projectsService.findOne(id);
   }
 
+  @Get('count_votes/:id')
+  countProjectVotes(@Param('id') id: string) {
+    return this.projectsService.countProjectVotes(id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() data: Project) {
     return this.projectsService.update(id, data);

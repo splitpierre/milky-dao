@@ -13,21 +13,6 @@ async function seed() {
   const client = new PrismaClient();
 
   /**
-   * Master Admin
-   */
-  const adminUser = {
-    name: 'admin1',
-    address: 'addrtest1',
-    rolesEnum: ['admin'],
-  };
-
-  const adminInserted = await client.user.upsert({
-    where: { address: adminUser.address },
-    update: {},
-    create: adminUser,
-  });
-
-  /**
    * User Roles
    */
   const userRoles: any = [
@@ -44,13 +29,38 @@ async function seed() {
       name: 'Project Manager',
     },
   ];
+  const genUserRoles: any = [];
   for (const userRole of userRoles) {
-    await client.userRole.upsert({
+    const inserted = await client.userRole.upsert({
       where: { name: userRole.name },
       update: {},
       create: userRole,
     });
+    genUserRoles.push(inserted);
   }
+  console.log('gen roles', { genUserRoles });
+  /**
+   * Master Admin
+   */
+  const adminUser = {
+    name: 'admin1',
+    address: 'addrtest1',
+    roles: {
+      connect: [
+        {
+          id: genUserRoles[
+            genUserRoles.findIndex((obj) => obj.name === 'Admin')
+          ].id,
+        },
+      ],
+    },
+  };
+
+  const adminInserted = await client.user.upsert({
+    where: { address: adminUser.address },
+    update: {},
+    create: adminUser,
+  });
 
   /**
    * Categories
@@ -72,6 +82,10 @@ async function seed() {
       title: 'Wallet',
       slug: 'wallet',
     },
+    {
+      title: 'Tools',
+      slug: 'tools',
+    },
   ];
   const generatedCategories: any = [];
   for (const category of categories) {
@@ -82,7 +96,6 @@ async function seed() {
     });
     generatedCategories.push(inserted);
   }
-
   /**
    * Projects
    */
@@ -97,12 +110,11 @@ async function seed() {
       iconImage:
         'https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/623d54126a85fa41bc71d574_Eternl.png',
       categories: {
-        create: [
+        connect: [
           {
-            categoryId:
-              generatedCategories[
-                generatedCategories.findIndex((obj) => obj.slug === 'wallet')
-              ].id,
+            id: generatedCategories[
+              generatedCategories.findIndex((obj) => obj.slug === 'wallet')
+            ].id,
           },
         ],
       },
@@ -118,12 +130,11 @@ async function seed() {
       iconImage:
         'https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/615c6e323621c20e43b94706_dcSpark.png',
       categories: {
-        create: [
+        connect: [
           {
-            categoryId:
-              generatedCategories[
-                generatedCategories.findIndex((obj) => obj.slug === 'protocol')
-              ].id,
+            id: generatedCategories[
+              generatedCategories.findIndex((obj) => obj.slug === 'protocol')
+            ].id,
           },
         ],
       },
@@ -139,18 +150,36 @@ async function seed() {
       iconImage:
         'https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/61d31feb7494374f8cf4a130_Lil%20Goats.png',
       categories: {
-        create: [
+        connect: [
           {
-            categoryId:
-              generatedCategories[
-                generatedCategories.findIndex((obj) => obj.slug === 'game')
-              ].id,
+            id: generatedCategories[
+              generatedCategories.findIndex((obj) => obj.slug === 'game')
+            ].id,
           },
           {
-            categoryId:
-              generatedCategories[
-                generatedCategories.findIndex((obj) => obj.slug === 'defi')
-              ].id,
+            id: generatedCategories[
+              generatedCategories.findIndex((obj) => obj.slug === 'defi')
+            ].id,
+          },
+        ],
+      },
+      userId: adminInserted.id || 1,
+    },
+    {
+      title: 'Blockfrost',
+      slug: 'blockfrost',
+      shortDescription:
+        'We provide an instant and scalable Cardano API for free. ',
+      fullDescription:
+        'API for Cardano decentralized blockchain. Accessing and processing information stored on the blockchain is not trivial. We provide abstraction between you and blockchain data, taking away the burden of complexity, so you can focus on what really matters - developing your applications.\n',
+      iconImage:
+        'https://uploads-ssl.webflow.com/60d83e3c6cf84748f7d0a62b/613f20ede726f6e240554584_blockfrost.png',
+      categories: {
+        connect: [
+          {
+            id: generatedCategories[
+              generatedCategories.findIndex((obj) => obj.slug === 'tools')
+            ].id,
           },
         ],
       },

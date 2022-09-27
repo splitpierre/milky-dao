@@ -6,8 +6,26 @@ import { PrismaService } from 'src/prisma.service';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  create(data: User) {
-    return this.prisma.user.create({ data });
+  async create(data: User) {
+    const createdUser = await this.prisma.user.create({ data: data });
+    const roles = await this.prisma.userRole.findFirst({
+      where: {
+        name: {
+          equals: 'Voter',
+        },
+      },
+    });
+    const updateUser = await this.prisma.user.update({
+      where: {
+        id: String(createdUser.id),
+      },
+      data: {
+        roles: {
+          connect: { id: String(roles.id) },
+        },
+      },
+    });
+    return updateUser;
   }
 
   genApiKey(id: string, apiKey: string) {
@@ -22,11 +40,7 @@ export class UsersService {
   }
 
   findAll() {
-    return this.prisma.user.findMany({
-      include: {
-        roles: true,
-      },
-    });
+    return this.prisma.user.findMany();
   }
 
   findOne(id: string) {

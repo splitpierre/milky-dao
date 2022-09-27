@@ -8,6 +8,8 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UserRolesService } from './user-roles.service';
+import { CreateUserRoleDto } from './dto/create-user-role.dto';
+import { UpdateUserRoleDto } from './dto/update-user-role.dto';
 import { UserRole } from '@prisma/client';
 
 @Controller('user-roles')
@@ -27,11 +29,6 @@ export class UserRolesController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.userRolesService.findOne(id);
-  }
-
-  @Get('count/:param')
-  customCount(@Param('param') param: string) {
-    return this.userRolesService.customCount(param);
   }
 
   @Patch(':id')

@@ -2,13 +2,22 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PrismaService } from './prisma.service';
-import { VotersModule } from './voters/voters.module';
-import { UserRolesModule } from './user-roles/user-roles.module';
 import { UsersModule } from './users/users.module';
 import { ProjectsModule } from './projects/projects.module';
+import { CategoriesModule } from './categories/categories.module';
+import { UserRolesModule } from './user-roles/user-roles.module';
+import { ProposalsModule } from './proposals/proposals.module';
+import { VotesModule } from './votes/votes.module';
 
 @Module({
-  imports: [VotersModule, UserRolesModule, UsersModule, ProjectsModule],
+  imports: [
+    UsersModule,
+    ProjectsModule,
+    CategoriesModule,
+    UserRolesModule,
+    ProposalsModule,
+    VotesModule,
+  ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })

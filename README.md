@@ -12,6 +12,10 @@ This platform is intended to allow aggregation, analyzing, integration and votin
 
 Users can vote on projects, or own/manage projects as well as integrate with the platform via an exposed API that will facilitate third-party integrations with the platform governance API.
 
+## Pitch Video
+
+- To add
+
 ## Tech Stack
 
 - Front-end:
@@ -41,7 +45,7 @@ Users can vote on projects, or own/manage projects as well as integrate with the
 - Project Website
   - https://milky-dao.vercel.app/
   - https://milky-dao.netlify.app/
-- Project API
+- Project API (Swagger)
   - https://milky-dao-api.herokuapp.com/api
 
 ## Project Structure
@@ -49,6 +53,11 @@ Users can vote on projects, or own/manage projects as well as integrate with the
 - [src/](src/) - Frontend
 - [server/](server/) - Backend
 - [server/prisma/](server/prisma/) - Prisma Schemas
+
+## Screens and graphic material
+
+- Current project assets [src/assets/](src/assets/)
+- Figma for intended layout [Figma File](https://www.figma.com/file/f0uA5u7FgFkaKVDadjUu7h/Milky-DAO?node-id=2%3A2)
 
 ## How to build & run the Frontend
 
@@ -66,6 +75,11 @@ Users can vote on projects, or own/manage projects as well as integrate with the
 ## How to build & run the Backend
 
 - [server/README.md](server/README.md)
+
+## Developed by
+
+- Pierre Maciel (https://github.com/splitpierre)
+- Milkomeda Address: 0x74C79ac48508add750d44348Fe65f5EFB51a4142
 
 ## License
 

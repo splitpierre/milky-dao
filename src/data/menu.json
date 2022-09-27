@@ -12,7 +12,7 @@
     "url": "/about"
   },
   {
-    "title": "Fetch",
-    "url": "/fetch"
+    "title": "API Docs",
+    "url": "https://milky-dao-api.herokuapp.com/api/"
   }
 ]

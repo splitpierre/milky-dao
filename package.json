@@ -2,6 +2,7 @@
   "name": "milky-dao",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -20,6 +21,7 @@
     "astro": "^1.0.1",
     "astro-eleventy-img": "^0.5.0",
     "astro-icon": "^0.7.3",
+    "buffer": "^6.0.3",
     "prettier": "2.7.1",
     "prettier-plugin-astro": "^0.5.0",
     "rimraf": "^3.0.2",

@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const data = await fetch(`https://milky-dao-api.herokuapp.com/projects`).then(
     (response) => response.json()
   );
-
+  console.log(data);
   return data.map((project) => {
     return {
       params: { projectId: project.id },
@@ -32,6 +32,21 @@ const { project } = Astro.props;
       <ContentSection title={project.title} id="project">
         {project.fullDescription}
       </ContentSection>
+      <div>
+        <ul>
+          {
+            project &&
+              project.proposals &&
+              project.proposals.map(({ id, title, votes }) => (
+                <li>
+                  <a href={`/proposal/${id}`}>
+                    Proposal: {title} - Votes: {votes.length}
+                  </a>
+                </li>
+              ))
+          }
+        </ul>
+      </div>
     </div>
     <Footer />
   </body>

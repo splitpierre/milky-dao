@@ -14,7 +14,7 @@ Users can vote on projects, or own/manage projects as well as integrate with the
 
 ## Pitch Video
 
-- To add
+- https://www.dropbox.com/s/5qcgjmx4vlmjcwy/2022-09-27%2014-54-38.mkv?dl=0
 
 ## Tech Stack
 

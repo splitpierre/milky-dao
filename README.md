@@ -1,22 +1,56 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5aef3a14-9325-4bb1-8048-063a0eaf3acb/deploy-status)](https://app.netlify.com/sites/milky-dao/deploys)
-
 # Milky DAO 🌌
 
-Experimental project for the Milkomeda DAO Hackathon.
+## Short Description
 
-**Goals:**
+A governance aggregator to analyze & vote on Cardano DAO projects.
 
-- Develop a front-end for Cardano DAOs using cutting edge tech (selective component hydration)
-- Develop the back-end to hold/manage data on users and proposals
-- Expose an API so other DAOs can integrate into this DAO application.
-- Integrate with Milkomeda/Cardano wallets
+## Long Description
+
+In a world with many kinds of DAOs and voting mechanisms, the need for a smart/flexible DAO aggregator eventually arises.
+
+This platform is intended to allow aggregation, analyzing, integration and voting with the many kinds of Cardano DAOs.
+
+Users can vote on projects, or own/manage projects as well as integrate with the platform via an exposed API that will facilitate third-party integrations with the platform governance API.
 
 ## Tech Stack
 
-- Front-end: Astro + SolidJS
-- Back-end: Nest JS Stack
+- Front-end:
+  - Stack:
+    - [Astro](https://astro.build/)
+    - [SolidJS](https://www.solidjs.com/)
+    - [Nanostores](https://github.com/nanostores/nanostores)
+  - Description:
+    - The given stack was picked as an experiment using latest front-end technologies and techniques (against React) to provide much faster page-loads, using MPA architecture, leveraging server-side rendering, and making use Component Island architecture, to render the application as fast as possible (MUCH faster than React SPAs).
+- Back-end:
+  - Stack
+    - [NestJS](https://docs.nestjs.com/)
+    - [NodeJS](https://nodejs.dev/en/)
+    - [Prisma](https://prisma.io/)
+    - [Swagger](https://swagger.io/)
+    - MySQL with PostgreSQL compatibility
+  - Description:
+    - NestJS framework provides a powerful foundation for building, modeling and deploying scalable APIs, it follows exceptional standards and combines elements of OOP (Object Oriented Programming), FP (Functional Programming) and FRP (Functional Reactive Programming), enforcing best practices across developers.
+- Deployment:
+  - [Vercel](https://vercel.com/) - Frontend
+  - [Netlify](https://netlify.app/) - Frontend
+  - [Heroku](https://heroku.com/) - API Server
+  - [PlanetScale](https://planetscale.com/) - Database
 
-## Commands
+## Demo & Links
+
+- Project Website
+  - https://milky-dao.vercel.app/
+  - https://milky-dao.netlify.app/
+- Project API
+  - https://milky-dao-api.herokuapp.com/api
+
+## Project Structure
+
+- [src/](src/) - Frontend
+- [server/](server/) - Backend
+- [server/prisma/](server/prisma/) - Prisma Schemas
+
+## How to build & run the Frontend
 
 | Command                | Action                                             |
 | :--------------------- | :------------------------------------------------- |
@@ -29,12 +63,10 @@ Experimental project for the Milkomeda DAO Hackathon.
 | `npm run format`       | Format code with [Prettier](https://prettier.io/)  |
 | `npm run clean`        | Remove `node_modules` and build output             |
 
-## Documentations
+## How to build & run the Backend
 
-- [Milkomeda](https://dcspark.github.io/milkomeda-documentation/)
-- [Metamask](https://docs.metamask.io/guide/)
-- [Astro.build](https://docs.astro.build/en/getting-started/)
-- [SolidJS](https://github.com/solidjs/solid)
-- [Nanostores](https://github.com/nanostores/nanostores)
-- [NodeJS](https://nodejs.dev/en/)
-- [Fastify](https://www.fastify.io/docs/latest/)
+- [server/README.md](server/README.md)
+
+## License
+
+Milky DAO is [MIT licensed](LICENSE).

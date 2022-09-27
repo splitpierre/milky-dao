@@ -4,7 +4,8 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
 import menu from "~/data/menu.json";
 import logoPic from "../assets/icon-milky-dao.svg";
 import NavMenu from "~/components/nav-menu.astro";
-import ConnectButton from "~/components/connect-button";
+// import ConnectButton from "~/components/connect-button";
+import ConnectButton from "~/components/connect-popup.astro";
 ---
 
 <header
@@ -31,7 +32,7 @@ import ConnectButton from "~/components/connect-button";
           }
         </ul>
       </nav>
-      <ConnectButton client:load />
+      <ConnectButton />
       <button
         id="open-nav-button"
         type="button"

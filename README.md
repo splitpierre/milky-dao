@@ -20,7 +20,7 @@ Users can vote on projects, or own/manage projects as well as integrate with the
 
 - Front-end:
   - Stack:
-    - [Astro](https://astro.build/)
+    - [Astro Build](https://astro.build/)
     - [SolidJS](https://www.solidjs.com/)
     - [Nanostores](https://github.com/nanostores/nanostores)
   - Description:

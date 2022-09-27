@@ -27,27 +27,199 @@ const { project } = Astro.props;
     class="h-full overflow-x-hidden text-base bg-default text-default selection:bg-secondary selection:text-white"
   >
     <Header />
-    <div class="px-8 py-32 space-y-24">
-      <!-- <Projects /> -->
-      <ContentSection title={project.title} id="project">
-        {project.fullDescription}
-      </ContentSection>
-      <div>
-        <ul>
-          {
-            project &&
-              project.proposals &&
-              project.proposals.map(({ id, title, votes }) => (
-                <li>
-                  <a href={`/proposal/${id}`}>
-                    Proposal: {title} - Votes: {votes.length}
-                  </a>
-                </li>
-              ))
-          }
-        </ul>
+    <div class="px-8 py-32">
+      <ContentSection title={project.title} id="project" />
+
+      <div class="grid grid-cols-12 gap-10">
+        <!-- Main -->
+        <main class="col-span-8">
+          <!-- <Projects /> -->
+          <div>
+            <ul>
+              {
+                project &&
+                  project.proposals &&
+                  project.proposals.map(
+                    ({
+                      id,
+                      title,
+                      votes,
+                      userId,
+                      user,
+                      createdAt,
+                      startAt,
+                      endAt,
+                      description,
+                    }) => (
+                      <li>
+                        <div class="project-entry-list w-full rounded-lg bordershadow-md connect-bg mb-5">
+                          <div class="block rounded-lg shadow-lg text-center text-slate-900">
+                            <div class="py-3 rounded-t px-6 text-white">
+                              <div class="flex flex-col px-4 text-left">
+                                <div class="flex flex-row itens-center gap-5">
+                                  <div>
+                                    <img
+                                      class="mt-5 w-12 h-12 rounded-full shadow-lg"
+                                      src={project.iconImage}
+                                      alt={project.title}
+                                    />
+                                  </div>
+                                  <div class="w-full">
+                                    <div class="columns-2 itens-center">
+                                      <div class="flex">
+                                        <p class="text-xs">By {userId}</p>
+                                      </div>
+                                      <div class="flex justify-end">
+                                        <div class="rounded w-auto p-1 border-solid border-2 border-red-700">
+                                          <p class="text-xs">Closed</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <a href={`/proposal/${id}`}>
+                                      <h5 class="font-bold text-black text-xl">
+                                        {title}
+                                      </h5>
+                                      <h5 class="text-sm mt-2">
+                                        Lorem ipsum dolor sit amet. Hic rerum
+                                        iusto corporis facilis et rerum alias
+                                        vel voluptatum accusantium id molestiae.
+                                        Est dolorem sint 33 repellat facere aut
+                                        suscipit magni et atque ratione sit
+                                        sequi adipisci.
+                                        {description}
+                                      </h5>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="pr-6 pb-6 pt-3 text-right">
+                              <h5>
+                                <span class="text-sm"> Total Votes:</span>
+                                <span class="text-lg font-bold">
+                                  {votes.length}
+                                </span>
+                              </h5>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    )
+                  )
+              }
+            </ul>
+          </div>
+        </main>
+
+        <!-- Side Info -->
+        <aside class="col-span-4">
+          <!-- Vote Status -->
+          <div
+            class="project-entry-list w-full max-w-sm rounded-lg bordershadow-md connect-bg"
+          >
+            <div
+              class="block rounded-lg shadow-lg max-w-sm text-center text-slate-900"
+            >
+              <!-- Title -->
+              <div
+                class="py-3 rounded-t px-6 border-b border-gray-300 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold"
+              >
+                VOTE POWER STATUS
+              </div>
+
+              <!-- Data Votes -->
+              <div class="p-6">
+                <div class="flex flex-row itens-center gap-5">
+                  <div>
+                    <svg
+                      class="w-10 h-10 rounded-full shadow-lg bg-slate-300"
+                      version="1.0"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="5pt"
+                      height="5pt"
+                      viewBox="0 0 90.000000 90.000000"
+                      preserveAspectRatio="xMidYMid meet"
+                    >
+                      <g
+                        transform="translate(0.000000,90.000000) scale(0.100000,-0.100000)"
+                        fill="#000000"
+                        stroke="none"
+                      >
+                        <path
+                          d="M337 833 c-12 -21 -98 -416 -93 -428 4 -12 26 -15 96 -15 106 0 99
+17 69 -170 -11 -72 -18 -138 -15 -146 3 -8 14 -14 25 -14 15 0 44 46 131 207
+61 114 109 214 108 223 -3 12 -22 16 -96 18 -50 1 -92 6 -92 10 0 4 23 71 51
+149 28 79 49 149 45 158 -4 12 -26 15 -115 15 -60 0 -112 -3 -114 -7z"
+                        ></path>
+                      </g>
+                    </svg>
+                  </div>
+                  <h5 class="font-bold text-black">222 VOTES</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Create Proposal -->
+          <div
+            class="project-entry-list w-full max-w-sm rounded-lg bordershadow-md connect-bg mt-10"
+          >
+            <div
+              class="block rounded-lg shadow-lg max-w-sm text-center text-slate-900"
+            >
+              <!-- Title -->
+              <div
+                class="py-3 rounded-t px-6 border-b border-gray-30 text-white"
+              >
+                <div class="flex flex-col px-4 text-left">
+                  <h5 class="font-bold">Create a Proposal</h5>
+                  <p class="text-xs">
+                    It's quick and easy to add a new proposal.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Add Proposal -->
+              <div class="p-6">
+                <button
+                  type="button"
+                  class="w-full btn inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                  >Add New Proposal</button
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Info -->
+          <div
+            class="project-entry-list w-full max-w-sm rounded-lg bordershadow-md connect-bg mt-10"
+          >
+            <div
+              class="block rounded-lg shadow-lg max-w-sm text-center text-slate-900"
+            >
+              <div class="flex flex-col items-center pb-10 pt-4">
+                <img
+                  class="mb-3 w-24 h-24 rounded-full shadow-lg"
+                  src={project.iconImage}
+                  alt={project.title}
+                />
+                <h5 class="mb-1 text-xl font-medium text-center h-auto">
+                  {project.title}
+                </h5>
+                <h5 class="text-sm text-gray-500 dark:text-gray-400 p-3 h-auto">
+                  {project.fullDescription}
+                </h5>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
+    <!-- <a href={`/proposal/${id}`}>
+  Proposal: {title} - Votes: {votes.length}
+</a> -->
+
     <Footer />
   </body>
 </html>

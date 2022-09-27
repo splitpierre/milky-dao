@@ -30,11 +30,17 @@ html[data-theme="light"] .project-entry-list h5 {
 html[data-theme="dark"] .project-entry-list h5 {
   @apply text-white;
 }
+html[data-theme="light"] .project-entry-list p {
+  @apply text-gray-900;
+}
+html[data-theme="dark"] .project-entry-list p {
+  @apply text-white;
+}
 html[data-theme="dark"] .project-entry-list {
   @apply dark:bg-gray-800 dark:border-gray-700;
 }
 html[data-theme="dark"] .connect-bg {
-  @apply dark:bg-gray-800 dark:border-gray-700;
+  @apply dark:bg-gray-800 dark:border-gray-700 ;
 }
 html[data-theme="light"] .connect-bg {
   @apply bg-white;

@@ -4,16 +4,8 @@
     "url": "/"
   },
   {
-    "title": "Dashboard",
-    "url": "/dashboard"
-  },
-  {
     "title": "Projects",
     "url": "/projects"
-  },
-  {
-    "title": "Proposal",
-    "url": "/proposal"
   },
   {
     "title": "About",

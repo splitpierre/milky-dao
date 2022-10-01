@@ -29,9 +29,61 @@ const { proposal } = Astro.props;
     <Header type={"fixed"} />
     <div class="px-8 py-32 space-y-24">
       <!-- <Projects /> -->
-      <ContentSection title={proposal.title} id="proposal"
-        >hi {proposalId} -
-        {proposal.title}
+      <ContentSection title={proposal.title} id="proposal">
+        <div
+          class="project-entry-list w-full rounded-lg bordershadow-md connect-bg mb-5"
+        >
+          <div class="block rounded-lg shadow-lg text-center text-slate-900">
+            <div class="py-3 rounded-t px-6 text-white">
+              <div class="flex flex-col px-4 text-left">
+                <div class="flex flex-row itens-center gap-5">
+                  <div>
+                    <img
+                      class="mt-5 w-12 h-12 rounded-full shadow-lg"
+                      src={proposal.project.iconImage}
+                      alt={proposal.title}
+                    />
+                  </div>
+                  <div class="w-full">
+                    <div class="columns-2 itens-center">
+                      <div class="flex">
+                        <p class="text-xs">By {proposal.userId}</p>
+                      </div>
+                      <div class="flex justify-end">
+                        <div
+                          class="rounded w-auto p-1 border-solid border-2 border-red-700"
+                        >
+                          <p class="text-xs">Closed</p>
+                        </div>
+                      </div>
+                    </div>
+                    <a href={`/proposal/${proposal.id}`}>
+                      <h5 class="font-bold text-black text-xl">
+                        {proposal.title}
+                      </h5>
+                      <h5 class="text-sm mt-2">
+                        Lorem ipsum dolor sit amet. Hic rerum iusto corporis
+                        facilis et rerum alias vel voluptatum accusantium id
+                        molestiae. Est dolorem sint 33 repellat facere aut
+                        suscipit magni et atque ratione sit sequi adipisci.
+                        {proposal.description}
+                      </h5>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pr-6 pb-6 pt-3 text-right">
+              <h5>
+                <span class="text-sm"> Total Votes:</span>
+                <span class="text-lg font-bold">
+                  {proposal.votes.length}
+                </span>
+              </h5>
+            </div>
+          </div>
+        </div>
       </ContentSection>
     </div>
     <Footer />

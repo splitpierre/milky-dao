@@ -6,11 +6,17 @@ import logoPic from "../assets/icon-milky-dao.svg";
 import NavMenu from "~/components/nav-menu.astro";
 // import ConnectButton from "~/components/connect-button";
 import ConnectButton from "~/components/connect-popup.astro";
+export interface Props {
+  type: "fixed" | "regular";
+}
+const { type } = Astro.props;
+
+const headerClass = type === "fixed" ? "bottom-0 text-white fixed-header" : "";
 ---
 
 <header
   id="page-header"
-  class="absolute z-10 flex items-center justify-between w-full px-8 py-4 text-white border-b border-transparent fixed-header"
+  class={`absolute z-10 flex items-center justify-between w-full px-8 py-4 border-b border-transparent ${headerClass}`}
 >
   <a class="flex items-center gap-3 hover:!text-default" href="/">
     <picture>
@@ -24,7 +30,7 @@ import ConnectButton from "~/components/connect-popup.astro";
           {
             menu.map(({ title, url }) => (
               <li>
-                <a class="text-sm" href={url}>
+                <a class="text-sm font-bold" href={url}>
                   {title}
                 </a>
               </li>

@@ -1,6 +1,6 @@
 ---
 import Footer from "~/components/footer.astro";
-import Header from "~/components/header-home.astro";
+import Header from "~/components/header.astro";
 import Intro from "~/components/intro.astro";
 import Splash from "~/components/splash.astro";
 import Head from "~/components/head.astro";
@@ -14,7 +14,7 @@ import { SYSTEM_CONFIG } from "~/config";
     class="h-full overflow-x-hidden text-base bg-default text-default selection:bg-secondary selection:text-white"
   >
     <div id="body-gradient"></div>
-    <Header />
+    <Header type={"fixed"} />
     <Splash />
     <div class="px-8 py-32 space-y-24" id="home-content">
       <Intro />

@@ -40,7 +40,7 @@ html[data-theme="dark"] .project-entry-list {
   @apply dark:bg-gray-800 dark:border-gray-700;
 }
 html[data-theme="dark"] .connect-bg {
-  @apply dark:bg-gray-800 dark:border-gray-700 ;
+  @apply dark:bg-gray-800 dark:border-gray-700;
 }
 html[data-theme="light"] .connect-bg {
   @apply bg-white;
@@ -48,7 +48,12 @@ html[data-theme="light"] .connect-bg {
 html[data-theme="light"] .connect-bg h5 {
   @apply text-gray-900;
 }
-
+html[data-theme="light"] .fixed-header #page-header a {
+  @apply text-gray-900;
+}
+#open-connect-popup-button {
+  @apply text-white;
+}
 h1,
 h2,
 h3,

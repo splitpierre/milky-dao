@@ -43,6 +43,14 @@ export class UsersService {
     return this.prisma.user.findMany();
   }
 
+  findOneByAddress(address: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        address: String(address),
+      },
+    });
+  }
+
   findOne(id: string) {
     return this.prisma.user.findUnique({
       where: {

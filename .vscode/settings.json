@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["astro", "defi", "Fastify", "Hackathon", "nanostores"],
+  "cSpell.words": [
+    "astro",
+    "Cardano",
+    "defi",
+    "Fastify",
+    "Hackathon",
+    "nanostores"
+  ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnType": false,
   "editor.formatOnSave": true,

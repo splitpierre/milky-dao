@@ -8,6 +8,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { UserRolesModule } from './user-roles/user-roles.module';
 import { ProposalsModule } from './proposals/proposals.module';
 import { VotesModule } from './votes/votes.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { VotesModule } from './votes/votes.module';
     UserRolesModule,
     ProposalsModule,
     VotesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

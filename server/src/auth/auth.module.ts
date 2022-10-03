@@ -6,9 +6,19 @@ import { CardanoStrategy } from './strategies/cardano.strategy';
 import { UsersService } from 'src/users/users.service';
 import { PrismaService } from 'src/prisma.service';
 import { LocalStrategy } from './strategies/local.strategy';
+import { AuthController } from './auth.controller';
+import { JwtModule } from '@nestjs/jwt';
+import { jwtConstants } from './constants';
 
 @Module({
-  imports: [UsersModule, PassportModule],
+  imports: [
+    UsersModule,
+    PassportModule,
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '60s' },
+    }),
+  ],
   providers: [
     AuthService,
     CardanoStrategy,
@@ -17,5 +27,6 @@ import { LocalStrategy } from './strategies/local.strategy';
     PrismaService,
   ],
   exports: [AuthService],
+  controllers: [AuthController],
 })
 export class AuthModule {}

@@ -60,7 +60,6 @@ util.inherits(Strategy, passport.Strategy);
  * @api protected
  */
 Strategy.prototype.authenticate = function (req, options) {
-  console.log('are we there yet');
   options = options || {};
   var address =
     lookup(req.body, this._addressField) ||
@@ -68,9 +67,10 @@ Strategy.prototype.authenticate = function (req, options) {
   var signature =
     lookup(req.body, this._signatureField) ||
     lookup(req.query, this._signatureField);
-  console.log('check credentials', { address, signature });
+  // CIP 30 format
+  if (req.body.signature.signature) signature = req.body.signature;
+
   if (!address || !signature) {
-    console.log('failed!');
     return this.fail(
       { message: options.badRequestMessage || 'Missing credentials' },
       400,

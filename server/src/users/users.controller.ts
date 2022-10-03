@@ -10,13 +10,18 @@ import {
 import { UsersService } from './users.service';
 import { User } from '@prisma/client';
 import generateApiKey from 'generate-api-key';
+import { ApiTags } from '@nestjs/swagger';
+import { generateNonce } from 'src/auth/auth.util';
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
   create(@Body() data: User) {
+    const newNonce = generateNonce();
+    data.nonce = newNonce;
     return this.usersService.create(data);
   }
 

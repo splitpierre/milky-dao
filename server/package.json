@@ -35,6 +35,7 @@
     "@nestjs/swagger": "^6.1.2",
     "@prisma/client": "^4.3.1",
     "@splitpierre/passport-cardano": "file:passport-cardano",
+    "@stablelib/random": "^1.0.2",
     "generate-api-key": "^1.0.2",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",

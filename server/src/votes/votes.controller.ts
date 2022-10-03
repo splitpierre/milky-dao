@@ -11,7 +11,9 @@ import { VotesService } from './votes.service';
 import { CreateVoteDto } from './dto/create-vote.dto';
 import { UpdateVoteDto } from './dto/update-vote.dto';
 import { Votes } from '@prisma/client';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Voting')
 @Controller('votes')
 export class VotesController {
   constructor(private readonly votesService: VotesService) {}

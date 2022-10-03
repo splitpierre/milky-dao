@@ -4,16 +4,15 @@ import {
   UseGuards,
   Request,
   Get,
-  Param,
-  Query,
-  UnauthorizedException,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UsersService } from 'src/users/users.service';
 import { AuthService } from './auth.service';
 import { generateNonce } from './auth.util';
 import { CardanoAuthGuard } from './guards/cardano-auth.guard';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -25,17 +24,44 @@ export class AuthController {
 
   @UseGuards(CardanoAuthGuard)
   @Post('login')
+  @ApiOperation({ summary: 'Pass address and a signed nonce to login' })
+  @ApiBody({
+    type: 'string',
+  })
   async login(@Request() req) {
-    console.log('will login endpoint');
+    await this.userService.update(req.user.id, { nonce: generateNonce() });
     return this.authService.login(req.user);
   }
 
+  @Post('register')
+  @ApiOperation({ summary: 'Registers a new user.' })
+  @ApiBody({
+    type: 'string',
+  })
+  async register(@Request() req) {
+    const user = await this.userService.findOneByAddress(req.body.address);
+    if (user) {
+      throw new UnauthorizedException('User already exists, try login!');
+    }
+    const verify = await this.authService.verify(
+      req.body.address,
+      req.body.signature,
+    );
+    if (verify) {
+      const newUser = {
+        address: req.body.address,
+        nonce: generateNonce(),
+      };
+      const user = await this.userService.create(newUser);
+      return user;
+    } else {
+      throw new UnauthorizedException('Signed message does not verify.');
+    }
+  }
+
   @Get('nonce')
+  @ApiOperation({ summary: "Get's new/current nonce for new/existing users" })
   async nonce(@Request() req?: any) {
-    console.log('prep req', {
-      q: req.query.address,
-      b: req.body.address,
-    });
     const address = req.query.address || req.body.address;
     if (address) {
       const user = await this.userService.findOneByAddress(address);
@@ -45,13 +71,16 @@ export class AuthController {
         return user.nonce;
       }
     }
-    console.log('gen nonce for address', req.query.address);
     return generateNonce();
   }
 
-  @Post('register')
-  async register(@Request() req) {
-    console.log('will log', req);
-    return this.userService.create(req.body);
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @Get('profile')
+  @ApiOperation({ summary: 'Get user profile' })
+  getProfile(@Request() req) {
+    console.log('endpoint req');
+    const user = this.userService.findOne(req.user.userId);
+    return user;
   }
 }

@@ -38,6 +38,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Milky DAO API')
     .setDescription('API for interacting with Milky DAO platform')
+    .addBearerAuth()
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);

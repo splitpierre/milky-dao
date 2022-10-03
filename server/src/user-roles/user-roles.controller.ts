@@ -43,10 +43,4 @@ export class UserRolesController {
   remove(@Param('id') id: string) {
     return this.userRolesService.remove(id);
   }
-
-  //   @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    return req.user;
-  }
 }

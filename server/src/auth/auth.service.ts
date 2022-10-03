@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import { UsersService } from 'src/users/users.service';
@@ -13,9 +13,22 @@ export class AuthService {
 
   async verify(address: string, signature: any) {
     const user = await this.userService.findOneByAddress(address);
+    if (!address || !signature) {
+      throw new BadRequestException('Message is missing fields.');
+    }
+    let nonce: any = '';
+    if (!user) {
+      if (!signature.nonce)
+        throw new BadRequestException('Message is missing fields.');
+      nonce = signature.nonce;
+    } else {
+      nonce = user.nonce;
+    }
     const payload: any = signature;
     const signature_obj = new SignedData(payload);
-    if (!signature_obj.verify(address, user.nonce)) {
+    console.log('will verify', signature_obj);
+    if (!signature_obj.verify(address, nonce)) {
+      console.log('did not verify');
       return null;
     }
     return true;

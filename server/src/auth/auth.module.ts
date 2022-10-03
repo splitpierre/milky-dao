@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { CardanoStrategy } from './strategies/cardano.strategy';
 import { UsersService } from 'src/users/users.service';
 import { PrismaService } from 'src/prisma.service';
-import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
@@ -16,13 +16,13 @@ import { jwtConstants } from './constants';
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '48h' },
     }),
   ],
   providers: [
     AuthService,
     CardanoStrategy,
-    LocalStrategy,
+    JwtStrategy,
     UsersService,
     PrismaService,
   ],

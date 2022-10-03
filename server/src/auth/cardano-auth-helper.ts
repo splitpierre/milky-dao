@@ -102,42 +102,47 @@ export class SignedData {
   }
 
   verifyAddress(address: any) {
-    const checkAddress = Address.from_bech32(address);
-    if (this.headers.address.to_bech32() !== checkAddress.to_bech32()) {
-      // console.log("FASLE1")
+    try {
+      const checkAddress = Address.from_bech32(address);
+      // console.log('verify addr', checkAddress);
+      if (this.headers.address.to_bech32() !== checkAddress.to_bech32()) {
+        // console.log('FASLE1');
+        return false;
+      }
+      // check if BaseAddress
+      try {
+        const baseAddress = BaseAddress.from_address(this.headers.address);
+        //reconstruct address
+        const paymentKeyHash = this.headers.publicKey.hash();
+        const stakeKeyHash: any = baseAddress!.stake_cred().to_keyhash();
+        const reconstructedAddress: any = BaseAddress.new(
+          checkAddress.network_id(),
+          StakeCredential.from_keyhash(paymentKeyHash),
+          StakeCredential.from_keyhash(stakeKeyHash),
+        );
+        return (
+          checkAddress.to_bech32() ===
+          reconstructedAddress.to_address().to_bech32()
+        );
+      } catch (e) {
+        console.log('Catch on verify', e);
+      }
+
+      try {
+        const stakeKeyHash = this.headers.address.hash();
+        const reconstructedAddress = RewardAddress.new(
+          checkAddress.network_id(),
+          StakeCredential.from_keyhash(stakeKeyHash),
+        );
+        return (
+          checkAddress.to_bech32() ===
+          reconstructedAddress.to_address().to_bech32()
+        );
+      } catch (e) {}
+      // console.log("verifyAddress", checkAddress)
+
       return false;
-    }
-    // check if BaseAddress
-    try {
-      const baseAddress = BaseAddress.from_address(this.headers.address);
-      //reconstruct address
-      const paymentKeyHash = this.headers.publicKey.hash();
-      const stakeKeyHash: any = baseAddress!.stake_cred().to_keyhash();
-      const reconstructedAddress: any = BaseAddress.new(
-        checkAddress.network_id(),
-        StakeCredential.from_keyhash(paymentKeyHash),
-        StakeCredential.from_keyhash(stakeKeyHash),
-      );
-      return (
-        checkAddress.to_bech32() ===
-        reconstructedAddress.to_address().to_bech32()
-      );
     } catch (e) {}
-
-    try {
-      const stakeKeyHash = this.headers.address.hash();
-      const reconstructedAddress = RewardAddress.new(
-        checkAddress.network_id(),
-        StakeCredential.from_keyhash(stakeKeyHash),
-      );
-      return (
-        checkAddress.to_bech32() ===
-        reconstructedAddress.to_address().to_bech32()
-      );
-    } catch (e) {}
-    // console.log("verifyAddress", checkAddress)
-
-    return false;
   }
 }
 

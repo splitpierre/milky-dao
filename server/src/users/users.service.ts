@@ -6,7 +6,7 @@ import { PrismaService } from 'src/prisma.service';
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: User) {
+  async create(data: any) {
     const createdUser = await this.prisma.user.create({ data: data });
     const roles = await this.prisma.userRole.findFirst({
       where: {
@@ -59,7 +59,7 @@ export class UsersService {
     });
   }
 
-  update(id: string, data: User) {
+  update(id: string, data: any) {
     return this.prisma.user.update({
       where: {
         id: String(id),

@@ -281,6 +281,19 @@ export default function WalletConnectionMenu() {
             </a>
           </li>
         )}
+        <li>
+          <a
+            href="#"
+            onClick={walletDisconnect}
+            class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+          >
+            <span class="flex-1 ml-3 whitespace-nowrap">
+              {" "}
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Force
+              Disconnect
+            </span>
+          </a>
+        </li>
       </ul>
       {/* <div class=" w-80">
         <span class=" overflow-x-scroll relative block">

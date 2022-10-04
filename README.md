@@ -1,5 +1,9 @@
 # Milky DAO 🌌
 
+## Hackathon Submission Notice:
+
+The hackathon submission was tagged at [1a0cfbd](https://github.com/splitpierre/milky-dao/commit/1a0cfbde34ff5d755a5a00fc40a30bb96cb4c479) - [v0.0.1-hackathon](https://github.com/splitpierre/milky-dao/tree/v0.0.1-hackathon), can also be downloaded at [Release Tags](https://github.com/splitpierre/milky-dao/tags). Work is and will be continuing after the Hackathon submission from this commit onwards, [read commits for more](https://github.com/splitpierre/milky-dao/commits/main).
+
 ## Short Description
 
 A governance aggregator to analyze & vote on Cardano DAO projects.

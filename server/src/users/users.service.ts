@@ -56,6 +56,9 @@ export class UsersService {
       where: {
         id: String(id),
       },
+      include: {
+        roles: true,
+      },
     });
   }
 

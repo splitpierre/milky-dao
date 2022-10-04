@@ -23,6 +23,8 @@ export default function ProfilePage() {
         <br />
         <span>createdAt: {user().createdAt}</span>
         <br />
+        <span>roles: {user().roles}</span>
+        <br />
       </div>
     </>
   );

@@ -14,6 +14,7 @@ type TheUser = {
   name?: string;
   apiKey?: string;
   createdAt?: string;
+  roles?: string;
 };
 
 export const storeUser = persistentMap("user", <TheUser>{});
@@ -47,7 +48,7 @@ export const walletDisconnect = async () => {
   walletSelected.set("");
   newUserNonce.set("");
   storeUser.set(<TheUser>{});
-  console.log("issued disconnect", storeUser.get().address);
+  window.location.href = "/";
 };
 
 export const getWalletUser = async () => {
@@ -181,6 +182,7 @@ export const walletLogin = async () => {
         id: fetchUser.id,
         createdAt: fetchUser.createdAt,
         apiKey: fetchUser.apiKey,
+        roles: JSON.stringify(fetchUser.roles),
       });
       console.log("got user profile", fetchUser);
       newUserNonce.set("");

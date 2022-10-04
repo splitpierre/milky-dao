@@ -41,6 +41,7 @@ function Strategy(options, verify) {
 
   this._addressField = options.addressField || 'address';
   this._signatureField = options.signatureField || 'signature';
+  this._nonceField = options.nonceField || 'nonce';
 
   passport.Strategy.call(this);
   this.name = 'cardano';
@@ -67,10 +68,12 @@ Strategy.prototype.authenticate = function (req, options) {
   var signature =
     lookup(req.body, this._signatureField) ||
     lookup(req.query, this._signatureField);
+  var nonce =
+    lookup(req.body, this._nonceField) || lookup(req.query, this._nonceField);
   // CIP 30 format
   if (req.body.signature.signature) signature = req.body.signature;
 
-  if (!address || !signature) {
+  if (!address || !signature || !nonce) {
     return this.fail(
       { message: options.badRequestMessage || 'Missing credentials' },
       400,
@@ -92,9 +95,9 @@ Strategy.prototype.authenticate = function (req, options) {
 
   try {
     if (self._passReqToCallback) {
-      this._verify(req, address, signature, verified);
+      this._verify(req, address, signature, nonce, verified);
     } else {
-      this._verify(address, signature, verified);
+      this._verify(address, signature, nonce, verified);
     }
   } catch (ex) {
     return self.error(ex);

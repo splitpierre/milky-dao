@@ -11,16 +11,15 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async verify(address: string, signature: any) {
+  async verify(address: string, signature: any, nonce: string) {
     const user = await this.userService.findOneByAddress(address);
     if (!address || !signature) {
       throw new BadRequestException('Message is missing fields.');
     }
-    let nonce: any = '';
+    // let nonce: any = '';
     if (!user) {
-      if (!signature.nonce)
-        throw new BadRequestException('Message is missing fields.');
-      nonce = signature.nonce;
+      if (!nonce) throw new BadRequestException('Message is missing fields.');
+      nonce = nonce;
     } else {
       nonce = user.nonce;
     }

@@ -25,6 +25,7 @@ export class SignedData {
   headers: { algorithmId: any; address: any; publicKey: PublicKey };
   constructor(signed: any) {
     // CIP 30 VERIFY
+    console.log('doing CIP 0030 VERIFY');
     if (typeof signed === 'object') {
       const signature_buffer: any = Buffer.from(signed.signature, 'hex');
       const cose_buffer = Buffer.from(signature_buffer, 'hex');
@@ -51,6 +52,8 @@ export class SignedData {
       this.data = message.signed_data().to_bytes();
       this.payload = message.signed_data().payload();
     } else {
+      console.log('doing CIP 0008 VERIFY');
+
       // CIP 0008 VERIFY
       const signed_buffer: any = Buffer.from(signed, 'hex');
       const cose_buffer = Buffer.from(signed_buffer, 'hex');

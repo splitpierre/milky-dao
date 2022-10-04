@@ -1,22 +1,59 @@
 import {
-  fetchSample,
-  walletConnect,
-  walletConnectPersist,
   walletDisconnect,
-  persistedAddr,
+  walletEnable,
+  walletLogin,
+  storeUser,
+  walletSelected,
+  newUserNonce,
+  walletRegister,
 } from "../stores/walletStore";
 import { useStore } from "nanostores-persistent-solid";
 
+/**
+ * This is the wallet menu options
+ * IF no store data, user is disconnected
+ * IF has selected wallet, check if user exists
+ *    if user exists show login buttons, else register buttons
+ * @returns
+ */
 export default function WalletConnectionMenu() {
-  const persisted_addr = useStore(persistedAddr);
+  const theUser = useStore(storeUser);
+  const theWallet = useStore(walletSelected);
+  const newNonce = useStore(newUserNonce);
   return (
     <>
       <ul class="my-4 space-y-3">
-        {!persisted_addr() && (
+        {/* {!theUser().address && (
           <li>
             <a
               href="#"
-              onClick={walletConnectPersist}
+              onClick={async () => {
+                await walletEnable("flint");
+                window.location.href = "/profile";
+              }}
+              class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            >
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACtUlEQVRogcWa4XnaMBCG33M6ACO4E4QRYIKmE0SQBboBZYN0ApQN2gmgE5RMUDYoHSC+/pGLAYMkLCnfP0A+vZ/POp/0AIWkcxZvhufUcavUAfukcxaqfK3gPnXs7AZa+FzxsxrIDQ8ZDfTBq1CnnieLgRJ3vlVyAyXhIbGB0vCQ0MB7wAN8SBEkFbwaJg1MKtiIZRNyzeAM6BOPSeDnrFRYi7BQYa1zFiHXyaBJn3jUBhs6XpSNWKZHMQwjFTb0vKVFmfoycXMGYuGdfhzFuAIPoPDFF/AmA7fAq7IUe2jmfPAAiL93ijaghlqbuK5SleWdPayTIPhAxWdAWAOj0OGqvJzA1wi/SNSZRhlQg1HC+xkHbzrX1wjrmBg+xWVAwkoblIGHCANqGIdOXgoe4jIwDhz3mgpelJ1vTLCBJgzgVZRJ+yHnnW8VkwFv5RHlQSx7KAMPcc3c/tqPrk3opnyEgnD8GKgwIqIM+5SkGwVQOV4jYtkCH3vHGsYIK/WsK2f2qlJuaEY6Z6Um4FGzbFGmeLJKQKaSZQBAFYPwoDO2/QP43K4RseybGT+BT0PmTGrAaaQcKlFHu8oe7rjL1L0OnKzIyRywEz3eB1Cx8FWopO+BAdq5jcl/GLcF9fb6Cn99Y3IbuAQftAVVLqyljnKsgVZ98CvVQ5vhUwXfA8Zk0WB492L0ZiCHgcHwTrOQQakNJIF3+2dvBYK0BlLBf+tuQX2KMXDttX+p2sTCv9xZf3ntKthAdbmkncE7mCiQ011cBFeYxLJRZXnydT+8oSb+5CIaHm44WnQHsA/AvoJnseePlhpqFX4HxRsADwPPRi8p1IBbsFGP2qlKNXNncqd1g+DhnQycHjUOUXEDKeEh0xoAaGac7VVSw0PBDOSAh1L/lcgEDyX+K5ERPquaGX/eTH7wfwtmbmGg2JPTAAAAAElFTkSuQmCC"
+                alt="Flint Wallet"
+                height="24"
+                width="24"
+              />
+              <span class="flex-1 ml-3 whitespace-nowrap">Flint Wallet</span>
+              <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+                Popular
+              </span>
+            </a>
+          </li>
+        )} */}
+        {!theUser().address && (
+          <li>
+            <a
+              href="#"
+              onClick={async () => {
+                await walletEnable("flint");
+                // window.location.href = "/profile";
+              }}
               class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
             >
               <img
@@ -32,7 +69,27 @@ export default function WalletConnectionMenu() {
             </a>
           </li>
         )}
-        {!persisted_addr() && (
+        {!theUser().address && (
+          <li>
+            <a
+              href="#"
+              onClick={async () => {
+                await walletEnable("nami");
+                // window.location.href = "/profile";
+              }}
+              class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            >
+              <img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACtUlEQVRogcWa4XnaMBCG33M6ACO4E4QRYIKmE0SQBboBZYN0ApQN2gmgE5RMUDYoHSC+/pGLAYMkLCnfP0A+vZ/POp/0AIWkcxZvhufUcavUAfukcxaqfK3gPnXs7AZa+FzxsxrIDQ8ZDfTBq1CnnieLgRJ3vlVyAyXhIbGB0vCQ0MB7wAN8SBEkFbwaJg1MKtiIZRNyzeAM6BOPSeDnrFRYi7BQYa1zFiHXyaBJn3jUBhs6XpSNWKZHMQwjFTb0vKVFmfoycXMGYuGdfhzFuAIPoPDFF/AmA7fAq7IUe2jmfPAAiL93ijaghlqbuK5SleWdPayTIPhAxWdAWAOj0OGqvJzA1wi/SNSZRhlQg1HC+xkHbzrX1wjrmBg+xWVAwkoblIGHCANqGIdOXgoe4jIwDhz3mgpelJ1vTLCBJgzgVZRJ+yHnnW8VkwFv5RHlQSx7KAMPcc3c/tqPrk3opnyEgnD8GKgwIqIM+5SkGwVQOV4jYtkCH3vHGsYIK/WsK2f2qlJuaEY6Z6Um4FGzbFGmeLJKQKaSZQBAFYPwoDO2/QP43K4RseybGT+BT0PmTGrAaaQcKlFHu8oe7rjL1L0OnKzIyRywEz3eB1Cx8FWopO+BAdq5jcl/GLcF9fb6Cn99Y3IbuAQftAVVLqyljnKsgVZ98CvVQ5vhUwXfA8Zk0WB492L0ZiCHgcHwTrOQQakNJIF3+2dvBYK0BlLBf+tuQX2KMXDttX+p2sTCv9xZf3ntKthAdbmkncE7mCiQ011cBFeYxLJRZXnydT+8oSb+5CIaHm44WnQHsA/AvoJnseePlhpqFX4HxRsADwPPRi8p1IBbsFGP2qlKNXNncqd1g+DhnQycHjUOUXEDKeEh0xoAaGac7VVSw0PBDOSAh1L/lcgEDyX+K5ERPquaGX/eTH7wfwtmbmGg2JPTAAAAAElFTkSuQmCC"
+                alt="Nami Wallet"
+                height="24"
+                width="24"
+              />
+              <span class="flex-1 ml-3 whitespace-nowrap">Nami Wallet</span>
+            </a>
+          </li>
+        )}
+        {!theUser().address && (
           <li>
             <a
               href="#"
@@ -166,7 +223,7 @@ export default function WalletConnectionMenu() {
             </a>
           </li>
         )}
-        {persisted_addr() && (
+        {theWallet() && theUser().address && theUser().id && (
           <li>
             <a
               href="/profile"
@@ -179,7 +236,36 @@ export default function WalletConnectionMenu() {
             </a>
           </li>
         )}
-        {persisted_addr() && (
+        {theWallet() && newNonce() && (
+          <li>
+            <a
+              // href="/register"
+              onClick={walletRegister}
+              class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            >
+              <span class="flex-1 ml-3 whitespace-nowrap">
+                <i class="fa-solid fa-user"></i> Register
+              </span>
+            </a>
+          </li>
+        )}
+        {theWallet() && theUser().address && !newNonce() && !theUser().id && (
+          <li>
+            <a
+              href="#"
+              onClick={async () => {
+                await walletLogin();
+                // window.location.href = "/profile";
+              }}
+              class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white"
+            >
+              <span class="flex-1 ml-3 whitespace-nowrap">
+                <i class="fa-solid fa-user"></i> Login
+              </span>
+            </a>
+          </li>
+        )}
+        {theWallet() && (
           <li>
             <a
               href="#"
@@ -194,11 +280,11 @@ export default function WalletConnectionMenu() {
           </li>
         )}
       </ul>
-      <div class=" w-80">
+      {/* <div class=" w-80">
         <span class=" overflow-x-scroll relative block">
-          {persisted_addr()}
+          {theUser().address}
         </span>
-      </div>
+      </div> */}
     </>
   );
 }

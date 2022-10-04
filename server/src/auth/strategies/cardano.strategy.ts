@@ -17,12 +17,13 @@ export class CardanoStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  async validate(address: string, signature: any): Promise<any> {
+  async validate(address: string, signature: any, nonce: string): Promise<any> {
     const user = await this.userService.findOneByAddress(address);
     if (!user) {
       throw new NotFoundException();
     }
-    const verify = await this.authService.verify(address, signature);
+    console.log('lets verify', { address, signature, nonce });
+    const verify = await this.authService.verify(address, signature, nonce);
     if (!verify) {
       throw new UnauthorizedException('Signed message does not verify');
     }

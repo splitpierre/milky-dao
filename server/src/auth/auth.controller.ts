@@ -46,6 +46,7 @@ export class AuthController {
     const verify = await this.authService.verify(
       req.body.address,
       req.body.signature,
+      req.body.nonce,
     );
     if (verify) {
       const newUser = {

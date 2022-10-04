@@ -28,13 +28,23 @@ export class UsersService {
     return updateUser;
   }
 
-  genApiKey(id: string, apiKey: string) {
+  async genApiKey(id: string, apiKey: string) {
+    const roles = await this.prisma.userRole.findFirst({
+      where: {
+        name: {
+          equals: 'Developer',
+        },
+      },
+    });
     return this.prisma.user.update({
       where: {
         id: String(id),
       },
       data: {
         apiKey: apiKey,
+        roles: {
+          connect: { id: String(roles.id) },
+        },
       },
     });
   }
@@ -58,6 +68,8 @@ export class UsersService {
       },
       include: {
         roles: true,
+        proposal: true,
+        project: true,
       },
     });
   }

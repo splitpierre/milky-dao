@@ -2,8 +2,8 @@ import { atom, map, action } from "nanostores";
 import { persistentAtom, persistentMap } from "nanostores-persistent-solid";
 import { STORE_API } from "./global";
 import { Buffer } from "buffer";
-export const voterAddr = atom({ value: "init" });
-export const bearStore = atom({ value: 0 });
+// export const voterAddr = atom({ value: "init" });
+// export const bearStore = atom({ value: 0 });
 export const walletSelected = persistentAtom("wallet", "");
 export const newUserNonce = persistentAtom("nonce", "");
 
@@ -15,25 +15,27 @@ type TheUser = {
   apiKey?: string;
   createdAt?: string;
   roles?: string;
+  projects?: string;
+  proposals?: string;
 };
 
 export const storeUser = persistentMap("user", <TheUser>{});
 
-export const increase = action(bearStore, "increase", (store) => {
-  store.set({ value: store.get().value + 1 });
-});
+// export const increase = action(bearStore, "increase", (store) => {
+//   store.set({ value: store.get().value + 1 });
+// });
 
-export const sampleResponse = atom({});
+// export const sampleResponse = atom({});
 
-export const fetchSample = action(
-  sampleResponse,
-  "fetchSample",
-  async (store) => {
-    store.set({
-      value: await (await fetch(`${STORE_API.api_url}/voters`)).json(),
-    });
-  }
-);
+// export const fetchSample = action(
+//   sampleResponse,
+//   "fetchSample",
+//   async (store) => {
+//     store.set({
+//       value: await (await fetch(`${STORE_API.api_url}/voters`)).json(),
+//     });
+//   }
+// );
 
 // export const walletConnect = async () => {
 //   // @ts-ignore
@@ -42,18 +44,27 @@ export const fetchSample = action(
 //   voterAddr.set({ value: addr[0] });
 //   console.log(await walletApi.getUsedAddresses());
 // };
-
+export const genApiKey = async () => {
+  const addr = storeUser.get().address;
+  const access_token = storeUser.get().authToken;
+  if (addr) {
+    const genApiKey = await (
+      await fetch(`${STORE_API.api_url}/users/apiKey/${storeUser.get().id}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+    ).json();
+    console.log("gen api", genApiKey);
+    storeUser.set({ ...storeUser.get(), apiKey: genApiKey.apiKey });
+  }
+};
 export const walletDisconnect = async () => {
   console.log("issue disconnect", storeUser.get().address);
   walletSelected.set("");
   newUserNonce.set("");
   storeUser.set(<TheUser>{});
   window.location.href = "/";
-};
-
-export const getWalletUser = async () => {
-  const selectedWallet = walletSelected.get();
-  storeUser.set({ address: selectedWallet });
 };
 
 export const walletEnable = async (wallet) => {
@@ -130,6 +141,29 @@ export const walletRegister = async () => {
     })
     .catch((error) => console.log("catch err", error));
 };
+export const fetchUser = async () => {
+  const addr = storeUser.get().address;
+  const access_token = storeUser.get().authToken;
+  if (addr) {
+    const fetchUser = await (
+      await fetch(`${STORE_API.api_url}/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+    ).json();
+    storeUser.set({
+      authToken: access_token,
+      address: addr,
+      id: fetchUser.id,
+      createdAt: fetchUser.createdAt,
+      apiKey: fetchUser.apiKey,
+      roles: JSON.stringify(fetchUser.roles),
+      proposals: JSON.stringify(fetchUser.proposal),
+      projects: JSON.stringify(fetchUser.project),
+    });
+  }
+};
 export const walletLogin = async () => {
   // @ts-ignore
   let walletApi = await window.cardano[walletSelected.get()].enable();
@@ -183,6 +217,8 @@ export const walletLogin = async () => {
         createdAt: fetchUser.createdAt,
         apiKey: fetchUser.apiKey,
         roles: JSON.stringify(fetchUser.roles),
+        proposals: JSON.stringify(fetchUser.proposal),
+        projects: JSON.stringify(fetchUser.project),
       });
       console.log("got user profile", fetchUser);
       newUserNonce.set("");

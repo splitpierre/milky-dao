@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from '@prisma/client';
 import generateApiKey from 'generate-api-key';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { generateNonce } from 'src/auth/auth.util';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('Users')
 @Controller('users')
@@ -26,6 +28,7 @@ export class UsersController {
     return this.usersService.create(data);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('apiKey/:id')
   @ApiOperation({ summary: 'Generates user API key and adds developer role.' })
   genApiKey(@Param('id') id: string) {

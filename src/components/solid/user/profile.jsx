@@ -6,6 +6,7 @@ import {
   newUserNonce,
   storeUser,
   walletSelected,
+  testTailFieldState,
 } from "~/stores/walletStore";
 import TextField from "@suid/material/TextField";
 import Box from "@suid/material/Box";
@@ -21,14 +22,24 @@ import AssignmentIndIcon from "@suid/icons-material/AssignmentInd";
 import Paper from "@suid/material/Paper";
 import Divider from "@suid/material/Divider";
 import Stack from "@suid/material/Stack";
+import TailTextField from "../../tailwind/TailTextField";
 
 export default function ProfilePage() {
   fetchUser();
   const user = useStore(storeUser);
   const wallet = useStore(walletSelected);
   const nonce = useStore(newUserNonce);
+  const testFieldState = useStore(testTailFieldState);
   return (
     <div class="w-full">
+      <TailTextField
+        id="test-tail-field"
+        type={"text"}
+        label="Test Custom Tailwind Text Field Component"
+        description="Make it as long and as crazy as you'd like"
+        onChange={(e) => console.log("onChange", e.target.value)}
+        value={testFieldState()}
+      />
       <Box
         component="form"
         sx={{

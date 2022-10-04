@@ -6,6 +6,7 @@ import { Buffer } from "buffer";
 // export const bearStore = atom({ value: 0 });
 export const walletSelected = persistentAtom("wallet", "");
 export const newUserNonce = persistentAtom("nonce", "");
+export const testTailFieldState = persistentAtom("testField", "");
 
 type TheUser = {
   address: string;
@@ -162,6 +163,7 @@ export const fetchUser = async () => {
       proposals: JSON.stringify(fetchUser.proposal),
       projects: JSON.stringify(fetchUser.project),
     });
+    testTailFieldState.set(addr);
   }
 };
 export const walletLogin = async () => {

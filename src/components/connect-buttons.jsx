@@ -8,6 +8,7 @@ import {
   walletRegister,
 } from "../stores/walletStore";
 import { useStore } from "nanostores-persistent-solid";
+import { STORE_API } from "../stores/global";
 
 /**
  * This is the wallet menu options
@@ -20,6 +21,7 @@ export default function WalletConnectionMenu() {
   const theUser = useStore(storeUser);
   const theWallet = useStore(walletSelected);
   const newNonce = useStore(newUserNonce);
+  console.log({ STORE_API });
   return (
     <>
       <ul class="my-4 space-y-3">

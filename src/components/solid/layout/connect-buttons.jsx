@@ -6,9 +6,9 @@ import {
   walletSelected,
   newUserNonce,
   walletRegister,
-} from "../stores/walletStore";
+} from "~/stores/walletStore";
 import { useStore } from "nanostores-persistent-solid";
-import { STORE_API } from "../stores/global";
+import { STORE_API } from "~/stores/global";
 
 /**
  * This is the wallet menu options

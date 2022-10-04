@@ -6,7 +6,7 @@ import {
   newUserNonce,
   storeUser,
   walletSelected,
-} from "../stores/walletStore";
+} from "~/stores/walletStore";
 import TextField from "@suid/material/TextField";
 import Box from "@suid/material/Box";
 import Button from "@suid/material/Button";

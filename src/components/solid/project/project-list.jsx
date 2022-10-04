@@ -1,6 +1,6 @@
 // import { createSignal, createResource } from "solid-js";
 import { useStore } from "nanostores-persistent-solid";
-import { fetchProjectList, projectListResponse } from "../stores/projectStore";
+import { fetchProjectList, projectListResponse } from "~/stores/projectStore";
 
 export default function ProjectList() {
   const projects = useStore(projectListResponse);

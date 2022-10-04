@@ -8,18 +8,18 @@
   background-size: cover;
 }
 html[data-theme="light"] #logo {
-  background-image: url("../assets/logo-milky-dao-dark.png");
+  background-image: url("../img/logo-milky-dao-dark.png");
 }
 
 html[data-theme="dark"] #logo {
-  background-image: url("../assets/logo-milky-dao-dark.png");
+  background-image: url("../img/logo-milky-dao-dark.png");
 }
 html[data-theme="dark"] #home-content,
 html[data-theme="dark"] #footer {
-  background-image: url("../assets/stars.png");
+  background-image: url("../img/stars.png");
 }
 html[data-theme="light"] .fixed-header #logo {
-  background-image: url("../assets/logo-milky-dao-light.png");
+  background-image: url("../img/logo-milky-dao-light.png");
 }
 html[data-theme="light"] .project-entry-list {
   @apply bg-white border-gray-200;
@@ -88,7 +88,7 @@ td {
 }
 
 #body-gradient {
-  background: url(../assets/bg-gradient-hero-home.png);
+  background: url(../img/bg-gradient-hero-home.png);
   background-size: cover;
   opacity: 0.3;
   width: 100%;

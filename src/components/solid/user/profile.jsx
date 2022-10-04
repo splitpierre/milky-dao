@@ -94,14 +94,19 @@ export default function ProfilePage() {
             </ListSubheader>
           }
         >
-          {JSON.parse(user().roles).map(({ id, name }) => (
-            <ListItem>
-              <ListItemIcon>
-                <AssignmentIndIcon />
-              </ListItemIcon>
-              <ListItemText primary={`${name}`} secondary={`Role ID: ${id} `} />
-            </ListItem>
-          ))}
+          {user() &&
+            user().roles &&
+            JSON.parse(user().roles).map(({ id, name }) => (
+              <ListItem>
+                <ListItemIcon>
+                  <AssignmentIndIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary={`${name}`}
+                  secondary={`Role ID: ${id} `}
+                />
+              </ListItem>
+            ))}
         </List>
       </Paper>
       <Divider variant="middle" />

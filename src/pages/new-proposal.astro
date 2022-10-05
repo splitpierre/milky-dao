@@ -5,7 +5,15 @@ import Head from "~/components/astro/layout/head.astro";
 import "~/assets/styles/index.css";
 import ContentSection from "~/components/astro/content/content-section.astro";
 
-const projectId = Astro.url.searchParams.get('projectId') || '';
+async function getProject(id){
+  const theProject = await (await fetch(
+    `https://milky-dao-api.herokuapp.com/projects/project/${id}`
+  )).json()
+  console.log(theProject)
+  return theProject
+}
+const projectId  = Astro.url.pathname.substring(Astro.url.pathname.lastIndexOf('/') + 1);
+const  project = await getProject(projectId);
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
@@ -21,7 +29,7 @@ const projectId = Astro.url.searchParams.get('projectId') || '';
         <div class="max-w-6xl space-y-2">
           <div class="flex flex-col items-center gap-4">
             <!-- <ProfilePage client:only="solid-js" /> -->
-            New Proposal form for projectId {JSON.stringify(projectId)}
+            New Proposal form for projectId {JSON.stringify(project)}
           </div>
         </div>
       </ContentSection>

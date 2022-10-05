@@ -11,7 +11,6 @@ async function getProject(id){
   console.log(theProject)
   return theProject
 }
-console.log('ops', Astro.url.pathname.substring(Astro.url.pathname.lastIndexOf('/') + 1))
 const projectId  = Astro.url.pathname.substring(Astro.url.pathname.lastIndexOf('/') + 1);
 const  project = await getProject(projectId);
 ---

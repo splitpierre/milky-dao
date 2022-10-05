@@ -31,7 +31,7 @@ const { project } = Astro.props;
     <div class="px-8 py-36 proposal-list">
       <!-- Container -->
       <div
-        class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen bg-gray-50 transition-all duration-200"
+        class="ease-soft-in-out xl:ml-68.5 relative transition-all duration-200"
       >
         <div class="w-full px-6 mx-auto">
           <!-- Top -->
@@ -161,7 +161,7 @@ const { project } = Astro.props;
                                     </a>
                                     <div class="mt-2">
                                       <h5 class="pr-5 text-sm font-bold">
-                                        {project.votes_count} VOTES
+                                        {votes.length} VOTES
                                       </h5>
                                     </div>
                                   </div>

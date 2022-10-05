@@ -40,22 +40,13 @@ html[data-theme="dark"] .project-entry-list {
   @apply dark:bg-gray-800 dark:border-gray-700;
 }
 
-html[data-theme="light"] .proposal-list h5 {
-  @apply text-white;
-}
-html[data-theme="dark"] .proposal-list h5 {
+.proposal-list h5 {
   @apply text-gray-900;
 }
-html[data-theme="light"] .proposal-list h6 {
-  @apply text-white;
-}
-html[data-theme="dark"] .proposal-list h6 {
+.proposal-list h6 {
   @apply text-gray-900;
 }
-html[data-theme="light"] .proposal-list p {
-  @apply text-white;
-}
-html[data-theme="dark"] .proposal-list p {
+.proposal-list p {
   @apply text-gray-900;
 }
 

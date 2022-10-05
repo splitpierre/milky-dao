@@ -8,7 +8,7 @@ export const fetchProjectList = action(
   "fetchProjectList",
   async (store) => {
     store.set({
-      value: await (await fetch(`${STORE_API.api_url}/projects`)).json(),
+      value: await (await fetch(`${STORE_API.api_url}/projects/all`)).json(),
     });
   }
 );

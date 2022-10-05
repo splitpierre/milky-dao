@@ -29,6 +29,7 @@
     "tailwindcss-fluid-type": "^1.3.3"
   },
   "dependencies": {
+    "@astrojs/vercel": "^2.1.0",
     "@dcspark/milkomeda-js-sdk": "^0.5.3",
     "@nanostores/solid": "^0.3.0",
     "@nestjs/typeorm": "^9.0.1",

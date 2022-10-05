@@ -36,6 +36,8 @@
     "@prisma/client": "^4.3.1",
     "@splitpierre/passport-cardano": "file:passport-cardano",
     "@stablelib/random": "^1.0.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
     "generate-api-key": "^1.0.2",
     "nest-access-control": "^2.2.0",
     "passport": "^0.6.0",

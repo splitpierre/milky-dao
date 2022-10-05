@@ -13,13 +13,13 @@ import { AuthModule } from './auth/auth.module';
 import { rolesBuilder } from './app.roles';
 @Module({
   imports: [
+    AuthModule,
     UsersModule,
+    UserRolesModule,
     ProjectsModule,
     CategoriesModule,
-    UserRolesModule,
     ProposalsModule,
     VotesModule,
-    AuthModule,
     AccessControlModule.forRoles(rolesBuilder),
   ],
   controllers: [AppController],

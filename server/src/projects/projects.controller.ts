@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { Project } from '@prisma/client';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ACGuard, UseRoles } from 'nest-access-control';
@@ -24,6 +24,7 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @ApiBearerAuth()
+  @ApiOperation({ summary: 'Creates new project.' })
   @UseGuards(JwtAuthGuard, AuthGuard, ACGuard)
   @UseRoles({
     resource: 'projects',
@@ -34,11 +35,13 @@ export class ProjectsController {
     return this.projectsService.create(data);
   }
 
+  @ApiOperation({ summary: 'Get all projects' })
   @Get('all')
   findAll() {
     return this.projectsService.findAll();
   }
 
+  @ApiOperation({ summary: 'Get own projects' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, AuthGuard, ACGuard)
   @UseRoles({
@@ -50,16 +53,19 @@ export class ProjectsController {
     return this.projectsService.findOwn(req.user.userId);
   }
 
+  @ApiOperation({ summary: 'Get project by ID' })
   @Get('project/:id')
   findOne(@Param('id') id: string) {
     return this.projectsService.findOne(id);
   }
 
+  @ApiOperation({ summary: 'Count total votes for project by projectId' })
   @Get('count_votes/:id')
   countProjectVotes(@Param('id') id: string) {
     return this.projectsService.countProjectVotes(id);
   }
 
+  @ApiOperation({ summary: 'Updates a project by ID' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, AuthGuard, ACGuard)
   @UseRoles({
@@ -99,6 +105,7 @@ export class ProjectsController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete a project by ID' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, AuthGuard, ACGuard)
   @UseRoles({

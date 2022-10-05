@@ -14,7 +14,7 @@ import { ProposalsService } from './proposals.service';
 import { CreateProposalDto } from './dto/create-proposal.dto';
 import { UpdateProposalDto } from './dto/update-proposal.dto';
 import { Proposal } from '@prisma/client';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
 import { ACGuard, UseRoles } from 'nest-access-control';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
@@ -24,6 +24,7 @@ import { rolesBuilder } from '../app.roles';
 export class ProposalsController {
   constructor(private readonly proposalsService: ProposalsService) {}
 
+  @ApiOperation({ summary: 'Create new proposal' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, AuthGuard, ACGuard)
   @UseRoles({
@@ -32,15 +33,17 @@ export class ProposalsController {
     possession: 'own',
   })
   @Post()
-  create(@Body() data: Proposal) {
+  create(@Body() data: CreateProposalDto) {
     return this.proposalsService.create(data);
   }
 
+  @ApiOperation({ summary: 'Get all proposals' })
   @Get('all')
   findAll() {
     return this.proposalsService.findAll();
   }
 
+  @ApiOperation({ summary: 'Get own proposals' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, AuthGuard, ACGuard)
   @UseRoles({
@@ -52,11 +55,13 @@ export class ProposalsController {
     return this.proposalsService.findOwn(req.user.userId);
   }
 
+  @ApiOperation({ summary: 'Get proposal by ID' })
   @Get('proposal/:id')
   findOne(@Param('id') id: string) {
     return this.proposalsService.findOne(id);
   }
 
+  @ApiOperation({ summary: 'Update proposal by ID' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, AuthGuard, ACGuard)
   @UseRoles({
@@ -101,6 +106,7 @@ export class ProposalsController {
     }
   }
 
+  @ApiOperation({ summary: 'Delete proposal by ID' })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, AuthGuard, ACGuard)
   @UseRoles({
@@ -111,6 +117,11 @@ export class ProposalsController {
   @Delete('proposal/:id')
   async remove(@Req() req, @Param('id') id: string) {
     const user = req.user;
+    // admin
+    if (rolesBuilder.can(user.roles).deleteAny('proposals').granted) {
+      return this.proposalsService.remove(id);
+    }
+
     const proposal = await this.proposalsService.findOne(id);
     if (
       rolesBuilder.can(user.roles).deleteOwn('proposals').granted &&

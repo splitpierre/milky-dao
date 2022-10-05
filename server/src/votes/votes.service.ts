@@ -22,6 +22,18 @@ export class VotesService {
     });
   }
 
+  findOwn(userId: string) {
+    return this.prisma.votes.findMany({
+      where: {
+        userId: String(userId),
+      },
+      include: {
+        user: true,
+        proposal: true,
+      },
+    });
+  }
+
   findOne(id: string) {
     return this.prisma.votes.findUnique({
       where: {

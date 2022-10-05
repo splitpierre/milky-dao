@@ -19,6 +19,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { ACGuard, UseRoles } from 'nest-access-control';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { rolesBuilder } from 'src/app.roles';
+import { CreateUserDto } from './dto/create-user.dto';
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
@@ -32,7 +33,7 @@ export class UsersController {
   })
   @Post()
   @ApiOperation({ summary: 'Creates a new user with default nonce.' })
-  create(@Body() data: User) {
+  create(@Body() data: CreateUserDto) {
     const newNonce = generateNonce();
     data.nonce = newNonce;
     return this.usersService.create(data);
@@ -115,6 +116,9 @@ export class UsersController {
   async remove(@Req() req, @Param('id') id: string) {
     const user = req.user;
     const theUser = await this.usersService.findOne(id);
+    if (rolesBuilder.can(user.roles).deleteAny('users').granted) {
+      return this.usersService.remove(id);
+    }
     if (
       rolesBuilder.can(user.roles).deleteOwn('proposals').granted &&
       user.userId === theUser.id

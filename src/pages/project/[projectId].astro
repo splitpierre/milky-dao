@@ -3,23 +3,17 @@ import Header from "~/components/astro/layout/header.astro";
 import Footer from "~/components/astro/layout/footer.astro";
 import Head from "~/components/astro/layout/head.astro";
 import "~/assets/styles/index.css";
-// import "~/assets/styles/ui.css?v=1.0.4";
-import ContentSection from "~/components/astro/content/content-section.astro";
-export async function getStaticPaths() {
-  const data = await fetch(
-    `https://milky-dao-api.herokuapp.com/projects/all`
-  ).then((response) => response.json());
-  console.log(data);
-  return data.map((project) => {
-    return {
-      params: { projectId: project.id },
-      props: { project },
-    };
-  });
-}
 
-const { projectId } = Astro.params;
-const { project } = Astro.props;
+async function getProject(id){
+  const theProject = await (await fetch(
+    `https://milky-dao-api.herokuapp.com/projects/project/${id}`
+  )).json()
+  console.log(theProject)
+  return theProject
+}
+console.log('ops', Astro.url.pathname.substring(Astro.url.pathname.lastIndexOf('/') + 1))
+const projectId  = Astro.url.pathname.substring(Astro.url.pathname.lastIndexOf('/') + 1);
+const  project = await getProject(projectId);
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
@@ -180,7 +174,7 @@ const { project } = Astro.props;
                         <div
                           class="flex flex-col justify-center flex-auto p-6 text-center"
                         >
-                          <a href="javascript:;">
+                          <a href={`/new-proposal?projectId=${projectId}`}>
                             <i class="mb-4 fa fa-plus text-slate-400"></i>
                             <h5 class="text-slate-400">New Proposal</h5>
                           </a>

@@ -7,6 +7,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://milky-dao.vercel.app/",
+  output: "server",
   integrations: [tailwind(), solid(), image(), mdx()],
   vite: {
     ssr: {

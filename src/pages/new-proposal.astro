@@ -1,0 +1,31 @@
+---
+import Footer from "~/components/astro/layout/footer.astro";
+import Header from "~/components/astro/layout/header.astro";
+import Head from "~/components/astro/layout/head.astro";
+import "~/assets/styles/index.css";
+import ContentSection from "~/components/astro/content/content-section.astro";
+
+const projectId = Astro.url.searchParams.get('projectId') || '';
+---
+
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <Head title="Submit New Proposal" />
+  <body
+    class="h-full overflow-x-hidden text-base bg-default text-default selection:bg-secondary selection:text-white"
+  >
+    <Header type={"fixed"} />
+    <div class="px-8 py-32 space-y-24">
+      <!-- <Projects /> -->
+      <ContentSection title="Submit New Proposal" id="new-proposal">
+        <!-- <div slot="lead">filter</div> -->
+        <div class="max-w-6xl space-y-2">
+          <div class="flex flex-col items-center gap-4">
+            <!-- <ProfilePage client:only="solid-js" /> -->
+            new proposal form for projectId {JSON.stringify(projectId)}
+          </div>
+        </div>
+      </ContentSection>
+    </div>
+    <Footer />
+  </body>
+</html>

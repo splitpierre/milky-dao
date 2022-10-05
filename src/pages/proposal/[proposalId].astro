@@ -4,21 +4,15 @@ import Footer from "~/components/astro/layout/footer.astro";
 import Head from "~/components/astro/layout/head.astro";
 import "~/assets/styles/index.css";
 import ContentSection from "~/components/astro/content/content-section.astro";
-export async function getStaticPaths() {
-  const data = await fetch(
-    `https://milky-dao-api.herokuapp.com/proposals/all`
-  ).then((response) => response.json());
-
-  return data.map((proposal) => {
-    return {
-      params: { proposalId: proposal.id },
-      props: { proposal },
-    };
-  });
+async function getProposal(id){
+  const theProposal = await (await fetch(
+    `https://milky-dao-api.herokuapp.com/proposals/proposal/${id}`
+  )).json()
+  console.log(theProposal)
+  return theProposal
 }
-
-const { proposalId } = Astro.params;
-const { proposal } = Astro.props;
+const proposalId  = Astro.url.pathname.substring(Astro.url.pathname.lastIndexOf('/') + 1);
+const  proposal = await getProposal(proposalId);
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">

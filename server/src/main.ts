@@ -4,10 +4,7 @@ import { AppModule } from './app.module';
 import { checkAllowedOrigins } from './util/security-helper';
 
 async function bootstrap() {
-  const whitelist = [
-    'https://milky-dao.vercel.app',
-    'https://milky-dao.netlify.app/',
-  ];
+  const whitelist = ['https://milky-dao.vercel.app'];
   let corsObj: any = false;
   if (process.env.PUBLIC_ENVIRONMENT === 'local') {
     corsObj = true;

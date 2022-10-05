@@ -40,7 +40,6 @@ Users can vote on projects, or own/manage projects as well as integrate with the
     - NestJS framework provides a powerful foundation for building, modeling and deploying scalable APIs, it follows exceptional standards and combines elements of OOP (Object Oriented Programming), FP (Functional Programming) and FRP (Functional Reactive Programming), enforcing best practices across developers.
 - Deployment:
   - [Vercel](https://vercel.com/) - Frontend
-  - [Netlify](https://netlify.app/) - Frontend
   - [Heroku](https://heroku.com/) - API Server
   - [PlanetScale](https://planetscale.com/) - Database
 
@@ -48,7 +47,6 @@ Users can vote on projects, or own/manage projects as well as integrate with the
 
 - Project Website
   - https://milky-dao.vercel.app/
-  - https://milky-dao.netlify.app/
 - Project API (Swagger)
   - https://milky-dao-api.herokuapp.com/api
 

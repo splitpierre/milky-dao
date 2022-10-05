@@ -29,7 +29,10 @@ const  project = await getProject(projectId);
         <div class="max-w-6xl space-y-2">
           <div class="flex flex-col items-center gap-4">
             <!-- <ProfilePage client:only="solid-js" /> -->
-            New Proposal form for projectId {JSON.stringify(project)}
+            New Proposal form for projectId 
+            <div>
+              {JSON.stringify(project)}
+            </div>
           </div>
         </div>
       </ContentSection>

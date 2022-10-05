@@ -23,6 +23,7 @@ import Paper from "@suid/material/Paper";
 import Divider from "@suid/material/Divider";
 import Stack from "@suid/material/Stack";
 import TailTextField from "../../tailwind/TailTextField";
+import TailButton from "../../tailwind/TailButton";
 
 export default function ProfilePage() {
   fetchUser();
@@ -32,64 +33,43 @@ export default function ProfilePage() {
   const testFieldState = useStore(testTailFieldState);
   return (
     <div class="w-full">
-      <TailTextField
-        id="test-tail-field"
-        type={"text"}
-        label="Test Custom Tailwind Text Field Component"
-        description="Make it as long and as crazy as you'd like"
-        onChange={(e) => console.log("onChange", e.target.value)}
-        value={testFieldState()}
-      />
-      <Box
-        component="form"
-        sx={{
-          textAlign: "center",
-        }}
-        noValidate
-        autocomplete="off"
-      >
-        <TextField
-          id="outlined-basic"
+      <Box sx={{ mb: 4 }} component="form" noValidate autocomplete="off">
+        <TailTextField
+          id="address-tail-field"
+          type={"text"}
           label="Address"
-          variant="outlined"
-          fullWidth
           value={user().address}
           disabled
-          margin="normal"
         />
         <Stack
           spacing={2}
           direction="row"
-          sx={{ "& button": { mt: "14px !important" } }}
+          sx={{ "& button": { mt: "32px !important" } }}
         >
-          <TextField
-            id="outlined-basic"
+          <TailTextField
+            id="api-key-tail-field"
+            type={"text"}
             label="API Key"
-            variant="outlined"
-            margin="normal"
             value={user().apiKey}
             disabled
             fullWidth
           />
-          <Button
-            variant="contained"
-            size="small"
-            class="w-40 h-14 "
+          <TailButton
             onClick={async () => await genApiKey()}
-          >
-            {/* {user().apiKey ? "Copy" : "New Key"} */}
-            New Key
-          </Button>
+            label="New Key"
+            type="button"
+            class="mt-4  relative flex"
+            icon={<i class="fa-solid fa-right-to-bracket"></i>}
+          />
         </Stack>
 
-        <TextField
-          id="outlined-basic"
+        <TailTextField
+          id="api-key-tail-field"
+          type={"text"}
           label="Created At"
-          variant="outlined"
-          fullWidth
           value={user().createdAt}
           disabled
-          margin="normal"
+          fullWidth
         />
       </Box>
       <Paper

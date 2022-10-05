@@ -40,6 +40,21 @@ export class ProjectsService {
     }
     return projects;
   }
+  findOwn(userId: string) {
+    return this.prisma.project.findMany({
+      where: {
+        userId: String(userId),
+      },
+      include: {
+        categories: true,
+        proposals: {
+          include: {
+            votes: true,
+          },
+        },
+      },
+    });
+  }
 
   findOne(id: string) {
     return this.prisma.project.findUnique({

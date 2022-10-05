@@ -21,6 +21,19 @@ export class ProposalsService {
     });
   }
 
+  findOwn(userId: string) {
+    return this.prisma.proposal.findMany({
+      where: {
+        userId: String(userId),
+      },
+      include: {
+        project: true,
+        user: true,
+        votes: true,
+      },
+    });
+  }
+
   findOne(id: string) {
     return this.prisma.proposal.findUnique({
       where: {

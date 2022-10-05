@@ -50,7 +50,11 @@ export class UsersService {
   }
 
   findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.user.findMany({
+      include: {
+        roles: true,
+      },
+    });
   }
 
   findOneByAddress(address: string) {

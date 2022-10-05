@@ -6,7 +6,7 @@ import "~/assets/styles/index.css";
 import ContentSection from "~/components/astro/content/content-section.astro";
 export async function getStaticPaths() {
   const data = await fetch(
-    `https://milky-dao-api.herokuapp.com/proposals`
+    `https://milky-dao-api.herokuapp.com/proposals/all`
   ).then((response) => response.json());
 
   return data.map((proposal) => {

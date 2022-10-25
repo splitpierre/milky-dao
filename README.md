@@ -35,7 +35,7 @@ Users can vote on projects, or own/manage projects as well as integrate with the
   - [Heroku](https://heroku.com/) - API Server
   - [PlanetScale](https://planetscale.com/) - Database
 
-## Demo & Links
+## Demo Links
 
 - Project Website
   - https://milky-dao.vercel.app/
